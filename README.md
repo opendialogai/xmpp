@@ -1,6 +1,6 @@
 # OpenDialog Example Package
 
-[![CircleCI](https://circleci.com/gh/opendialogai/xmpp/tree/master.svg?style=svg&circle-token=d14bcacaf3cd3e6ae4dfd2fb3bf03658cf0ca8fa)](https://circleci.com/gh/opendialogai/xmpp/tree/master)
+[![CircleCI](https://circleci.com/gh/opendialogai/xmpp.svg?style=svg&circle-token=f035bfc5197ce7d7f7e68336b82e1d9b82773b4f)](https://circleci.com/gh/opendialogai/xmpp)
 
 This is the OpenDialog XMPP package that can be used inside OpenDialog for XMPP communications.
 
