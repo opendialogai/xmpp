@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "09c2a88b45915a0f05b451af757965b2",
+    "content-hash": "c2f7ef2d7e6dfed0770c225ed7e20ab4",
     "packages": [],
     "packages-dev": [
         {
@@ -1993,6 +1993,38 @@
                 "time"
             ],
             "time": "2019-08-31T16:37:55+00:00"
+        },
+        {
+            "name": "opendialogai/dgraph-docker",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/opendialogai/dgraph-docker.git",
+                "reference": "646b9b0dec42b6bced5a6b7687574c4db5b19de7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/opendialogai/dgraph-docker/zipball/646b9b0dec42b6bced5a6b7687574c4db5b19de7",
+                "reference": "646b9b0dec42b6bced5a6b7687574c4db5b19de7",
+                "shasum": ""
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Stuart Haigh",
+                    "email": "stuarth@greenshootlabs.com"
+                },
+                {
+                    "name": "Ronald Ashri",
+                    "email": "ronalda@greenshootlabs.com"
+                }
+            ],
+            "description": "The OpenDialog DGraph Docker compose file",
+            "time": "2019-09-10T19:22:02+00:00"
         },
         {
             "name": "opis/closure",
