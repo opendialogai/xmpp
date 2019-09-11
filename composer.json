@@ -1,11 +1,11 @@
 {
-    "name": "opendialogai/example-laravel-package",
-    "description": "An example Laravel package setup for OpenDialog",
+    "name": "opendialogai/xmpp",
+    "description": "An XMPP Laravel package for OpenDialog",
     "type": "library",
     "license": "Apache-2.0",
     "keywords": [
         "opendialogai",
-        "example-package"
+        "xmpp"
     ],
     "authors": [
         {
@@ -31,18 +31,18 @@
     },
     "autoload": {
         "psr-4": {
-            "OpenDialogAi\\Example\\": "src/"
+            "OpenDialogAi\\XMPP\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-          "OpenDialogAi\\Core\\Tests\\": "tests/"
+          "OpenDialogAi\\XMPP\\Tests\\": "tests/"
         }
     },
     "extra": {
         "laravel": {
           "providers": [
-            "OpenDialogAi\\Example\\ExampleServiceProvider"
+            "OpenDialogAi\\XMPP\\XMPPServiceProvider"
           ]
         }
     },

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace OpenDialogAI\Example;
+namespace OpenDialogAI\XMPP;
 
 use Illuminate\Support\ServiceProvider;
 
-class ExampleServiceProvider extends ServiceProvider
+class XMPPServiceProvider extends ServiceProvider
 {
     public function boot()
     {
@@ -16,8 +16,8 @@ class ExampleServiceProvider extends ServiceProvider
     public function register()
     {
         $this->mergeConfigFrom(
-            __DIR__ . '/config/opendialog-example.php',
-            'opendialog.example'
+            __DIR__ . '/config/opendialog-xmpp.php',
+            'opendialog.xmpp'
         );
     }
 }

@@ -1,8 +1,8 @@
 # OpenDialog Example Package
 
-[![CircleCI](https://circleci.com/gh/opendialogai/example-package/tree/master.svg?style=svg&circle-token=d14bcacaf3cd3e6ae4dfd2fb3bf03658cf0ca8fa)](https://circleci.com/gh/opendialogai/example-package/tree/master)
+[![CircleCI](https://circleci.com/gh/opendialogai/xmpp/tree/master.svg?style=svg&circle-token=d14bcacaf3cd3e6ae4dfd2fb3bf03658cf0ca8fa)](https://circleci.com/gh/opendialogai/xmpp/tree/master)
 
-This is the OpenDialog example package that can be used to create open dialog packages.
+This is the OpenDialog XMPP package that can be used inside OpenDialog for XMPP communications.
 
 [OpenDialog](https://opendialog.ai) is a conversation management platform and OpenDialog Core provides the 
 key pieces of support required. It has been created by the conversational interface and applied AI team at [GreenShoot Labs](https://www.greenshootlabs.com/).
@@ -16,7 +16,7 @@ In the meantime if you would like a preview please [get in touch](https://www.gr
 
 To install using [Composer](https://getcomposer.org/) run the following command:
 
-`composer require opendialogai/example-package`
+`composer require opendialogai/xmpp`
 
 ## Local Config
 To publish config files for local set up and customisation, run
