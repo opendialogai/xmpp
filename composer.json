@@ -50,7 +50,6 @@
     },
     "scripts": {
         "test": "./vendor/bin/phpunit",
-        "check-style": "./vendor/bin/phpcs src tests",
-        "fix-style": "./vendor/bin/phpcbf src tests"
+        "cs": "./vendor/bin/phpcbf --standard=PSR12 --report=full src/"
     }
 }
