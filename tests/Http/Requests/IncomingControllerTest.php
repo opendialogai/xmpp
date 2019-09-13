@@ -2,7 +2,9 @@
 
 declare(strict_types=1);
 
-namespace OpenDialogAi\Xmpp\Tests;
+namespace OpenDialogAi\Xmpp\Tests\Http\Requests;
+
+use OpenDialogAi\Xmpp\Tests\TestCase;
 
 class IncomingControllerTest extends TestCase
 {
@@ -65,13 +67,35 @@ class IncomingControllerTest extends TestCase
                 ]]]);
     }
 
+    public function testContentIsRequiredInValidation()
+    {
+        $response = $this->json('post', '/incoming/xmpp', [
+            'content' => null
+        ]);
+
+        $response->assertStatus(422)
+            ->assertJson(['errors' => [
+                'content' => [
+                    'The content field is required.'
+                ]]]);
+    }
+
+    protected function fakeContent()
+    {
+        $content = new \stdClass();
+        $content->type = 'text';
+
+        return $content;
+    }
+
     public function testRequestCanPassValidation()
     {
         $response = $this->json('post', '/incoming/xmpp', [
             'notification' => 'message',
             'from' => 'user1@@xmpp-server.opendialog.ai',
             'to' => 'user2@xmpp-server.opendialog.ai',
-            'lang' => 'en'
+            'lang' => 'en',
+            'content' => json_encode($this->fakeContent())
         ]);
 
         $response->assertStatus(200);

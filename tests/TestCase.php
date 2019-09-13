@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace OpenDialogAi\XMPP\Tests;
+namespace OpenDialogAi\Xmpp\Tests;
 
 class TestCase extends \Orchestra\Testbench\TestCase
 {

@@ -47,6 +47,15 @@ class IncomingXmppMessage extends FormRequest implements IncomingMessageInterfac
                 'required',
                 'string',
                 'in:' . implode(',', config('opendialog.xmpp.supported_languages'))
+            ],
+            'content' => [
+                'required',
+                'json'
+            ],
+            'content.*.type' => [
+                'required',
+                'string',
+                'in:' . implode(',', config('opendialog.xmpp.allowed_message_content'))
             ]
         ];
     }
