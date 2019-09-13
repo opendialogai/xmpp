@@ -8,6 +8,23 @@ use OpenDialogAi\Xmpp\Tests\TestCase;
 
 class IncomingControllerTest extends TestCase
 {
+    protected function getData()
+    {
+        return [
+            'notification' => 'message',
+            'from' => $author = 'user1@@xmpp-server.opendialog.ai',
+            'to' => 'user2@xmpp-server.opendialog.ai',
+            'lang' => 'en',
+            'content' => [
+                'type' => 'text',
+                'author' => $author,
+                'data' => [
+                    'text' => 'Some Message'
+                ]
+            ]
+        ];
+    }
+
     public function testATestRoute()
     {
         $response = $this->get('/incoming/test');
@@ -17,9 +34,14 @@ class IncomingControllerTest extends TestCase
 
     public function testNotificationTypeValidation()
     {
-        $response = $this->json('post', '/incoming/xmpp', [
-            'notification' => 'not-allowed'
-        ]);
+        $data = $this->getData();
+        $data['notification'] = 'not-allowed';
+
+        $response = $this->json(
+            'post',
+            '/incoming/xmpp',
+            $data
+        );
 
         $response->assertStatus(422)
             ->assertJson(['errors' => [
@@ -30,9 +52,14 @@ class IncomingControllerTest extends TestCase
 
     public function testFromAddressValidation()
     {
-        $response = $this->json('post', '/incoming/xmpp', [
-            'from' => 'user@not-allowed.com'
-        ]);
+        $data = $this->getData();
+        $data['from'] = 'not-allowed@example.com';
+
+        $response = $this->json(
+            'post',
+            '/incoming/xmpp',
+            $data
+        );
 
         $response->assertStatus(422)
             ->assertJson(['errors' => [
@@ -43,9 +70,14 @@ class IncomingControllerTest extends TestCase
 
     public function testToAddressValidation()
     {
-        $response = $this->json('post', '/incoming/xmpp', [
-            'to' => 'user@not-allowed.com'
-        ]);
+        $data = $this->getData();
+        $data['to'] = 'not-allowed@example.com';
+
+        $response = $this->json(
+            'post',
+            '/incoming/xmpp',
+            $data
+        );
 
         $response->assertStatus(422)
             ->assertJson(['errors' => [
@@ -56,9 +88,14 @@ class IncomingControllerTest extends TestCase
 
     public function testLanguageIsSupportedValidation()
     {
-        $response = $this->json('post', '/incoming/xmpp', [
-            'lang' => 'de'
-        ]);
+        $data = $this->getData();
+        $data['lang'] = 'de';
+
+        $response = $this->json(
+            'post',
+            '/incoming/xmpp',
+            $data
+        );
 
         $response->assertStatus(422)
             ->assertJson(['errors' => [
@@ -69,9 +106,14 @@ class IncomingControllerTest extends TestCase
 
     public function testContentIsRequiredInValidation()
     {
-        $response = $this->json('post', '/incoming/xmpp', [
-            'content' => null
-        ]);
+        $data = $this->getData();
+        unset($data['content']);
+
+        $response = $this->json(
+            'post',
+            '/incoming/xmpp',
+            $data
+        );
 
         $response->assertStatus(422)
             ->assertJson(['errors' => [
@@ -80,23 +122,94 @@ class IncomingControllerTest extends TestCase
                 ]]]);
     }
 
-    protected function fakeContent()
+    public function testContentTypeValidates()
     {
-        $content = new \stdClass();
-        $content->type = 'text';
+        $data = $this->getData();
+        $data['content']['type'] = 'test';
 
-        return $content;
+        $response = $this->json(
+            'post',
+            '/incoming/xmpp',
+            $data
+        );
+
+        $response->assertStatus(422)
+            ->assertJson(['errors' => [
+                'content.type' => [
+                    'The selected content.type is invalid.'
+                ]]]);
+        ;
+    }
+
+    public function testContentAuthorValidates()
+    {
+        $data = $this->getData();
+        $data['from'] = $author = 'not-allowed@example.com';
+
+        $response = $this->json(
+            'post',
+            '/incoming/xmpp',
+            $data
+        );
+
+        $response->assertStatus(422)
+            ->assertJson(['errors' => [
+                'from' => [
+                    'The from address must be a correctly formed Open Dialog XMPP address.'
+                ],
+                'content.author' => [
+                    'The content.author and from must match.'
+                ]
+            ]]);
+    }
+
+    public function testContentDataValidation()
+    {
+        $data = $this->getData();
+        unset($data['content']['data']);
+
+        $response = $this->json(
+            'post',
+            '/incoming/xmpp',
+            $data
+        );
+
+        $response->assertStatus(422)
+            ->assertJson(['errors' => [
+                'content.data' => [
+                    'The content.data field is required.'
+                ]
+            ]]);
+    }
+
+    public function testContentDataTextValidation()
+    {
+        $data = $this->getData();
+        unset($data['content']['data']['text']);
+
+        $response = $this->json(
+            'post',
+            '/incoming/xmpp',
+            $data
+        );
+
+        $response->assertStatus(422)
+            ->assertJson(['errors' => [
+                'content.data.text' => [
+                    'The content.data.text field is required.'
+                ]
+            ]]);
     }
 
     public function testRequestCanPassValidation()
     {
-        $response = $this->json('post', '/incoming/xmpp', [
-            'notification' => 'message',
-            'from' => 'user1@@xmpp-server.opendialog.ai',
-            'to' => 'user2@xmpp-server.opendialog.ai',
-            'lang' => 'en',
-            'content' => json_encode($this->fakeContent())
-        ]);
+        $data = $this->getData();
+
+        $response = $this->json(
+            'post',
+            '/incoming/xmpp',
+            $data
+        );
 
         $response->assertStatus(200);
     }
