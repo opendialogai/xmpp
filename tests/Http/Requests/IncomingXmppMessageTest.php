@@ -25,13 +25,6 @@ class IncomingXmppMessageTest extends TestCase
         ];
     }
 
-    public function testATestRoute()
-    {
-        $response = $this->get('/incoming/test');
-
-        $response->assertStatus(200);
-    }
-
     public function testNotificationTypeValidation()
     {
         $data = $this->getData();

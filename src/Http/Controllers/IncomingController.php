@@ -42,9 +42,4 @@ class IncomingController extends BaseController implements IncomingControllerInt
 
         return response(null, 200);
     }
-
-    public function test(Request $request): Response
-    {
-        return response(null, 200);
-    }
 }
