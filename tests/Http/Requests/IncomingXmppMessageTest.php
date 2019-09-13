@@ -6,7 +6,7 @@ namespace OpenDialogAi\Xmpp\Tests\Http\Requests;
 
 use OpenDialogAi\Xmpp\Tests\TestCase;
 
-class IncomingControllerTest extends TestCase
+class IncomingXmppMessageTest extends TestCase
 {
     protected function getData()
     {
