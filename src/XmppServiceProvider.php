@@ -2,14 +2,16 @@
 
 declare(strict_types=1);
 
-namespace OpenDialogAI\XMPP;
+namespace OpenDialogAi\Xmpp;
 
 use Illuminate\Support\Facades\Log;
 use OpenDialogAi\Core\LoggingHelper;
 use Illuminate\Support\ServiceProvider;
+use OpenDialogAi\Xmpp\Http\Requests\IncomingXmppMessage;
 use OpenDialogAi\Core\Http\Middleware\RequestLoggerMiddleware;
+use OpenDialogAi\SensorEngine\Contracts\IncomingMessageInterface;
 
-class XMPPServiceProvider extends ServiceProvider
+class XmppServiceProvider extends ServiceProvider
 {
     /**
      * @var string $requestId
@@ -21,6 +23,8 @@ class XMPPServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/../config/opendialog-xmpp.php' => base_path('config/opendialog/xmpp.php')
         ], 'opendialog-config');
+
+        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
 
         $this->loadRoutesFrom(__DIR__ . '/../routes/web.php');
 
@@ -35,8 +39,12 @@ class XMPPServiceProvider extends ServiceProvider
     public function register()
     {
         $this->mergeConfigFrom(
-            __DIR__ . '/config/opendialog-xmpp.php',
+            __DIR__ . '/../config/opendialog-xmpp.php',
             'opendialog.xmpp'
         );
+
+        $this->loadRoutesFrom(__DIR__ . '/../routes/web.php');
+
+        $this->app->bind(IncomingMessageInterface::class, IncomingXmppMessage::class);
     }
 }

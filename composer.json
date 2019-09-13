@@ -33,18 +33,18 @@
     },
     "autoload": {
         "psr-4": {
-            "OpenDialogAi\\XMPP\\": "src/"
+            "OpenDialogAi\\Xmpp\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-          "OpenDialogAi\\XMPP\\Tests\\": "tests/"
+          "OpenDialogAi\\Xmpp\\Tests\\": "tests/"
         }
     },
     "extra": {
         "laravel": {
           "providers": [
-            "OpenDialogAi\\XMPP\\XMPPServiceProvider"
+            "OpenDialogAi\\Xmpp\\XmppServiceProvider"
           ]
         }
     },

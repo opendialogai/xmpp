@@ -16,7 +16,8 @@ parameters:
       report_width: ~
       whitelist_patterns: []
       encoding: ~
-      ignore_patterns: []
+      ignore_patterns:
+          - database/
       sniffs: []
       triggered_by: [php]
       exclude: []

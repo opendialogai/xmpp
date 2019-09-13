@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2103a49b29e98047a57e821a5b458973",
+    "content-hash": "cc556c847d0cfdf550fb53c2cf841b73",
     "packages": [
         {
             "name": "anahkiasen/underscore-php",
@@ -2015,9 +2015,9 @@
             "authors": [
                 {
                     "name": "Freek Van der Herten",
-                    "role": "Developer",
                     "email": "freek@spatie.be",
-                    "homepage": "https://murze.be"
+                    "homepage": "https://murze.be",
+                    "role": "Developer"
                 }
             ],
             "description": "String handling evolved",
