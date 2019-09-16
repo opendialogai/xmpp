@@ -18,6 +18,14 @@ To install using [Composer](https://getcomposer.org/) run the following command:
 
 `composer require opendialogai/xmpp`
 
+## Extras
+
+Currently the XMPP processing is handled by dispatching a `Job`.
+For the Queue handling we have chosen to use redis, which will
+allow us to use `Laravel Horizon` to monitor these Jobs in a development environment.
+
+Please ensure you setup redis correctly.
+
 ## Local Config
 To publish config files for local set up and customisation, run
 
@@ -28,7 +36,7 @@ This will copy over all required config files into `config/opendialog/`
 ## Running Code Sniffer
 
 To run code sniffer, run the following command
-```./vendor/bin/phpcs --standard=od-cs-ruleset.xml src/ --ignore=*/migrations/*,*/tests/*```
+```./vendor/bin/phpcs --standard=psr12 src/ --ignore=*/migrations/*,*/tests/*```
 
 This will ignore all files inside of migration directories as they will never have a namespace
 

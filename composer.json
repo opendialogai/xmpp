@@ -15,7 +15,8 @@
     ],
     "require": {
         "php": "^7.3.0",
-        "opendialogai/core": "dev-develop"
+        "opendialogai/core": "dev-develop",
+        "predis/predis": "^1.1"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.6",
