@@ -52,7 +52,7 @@ class XmppMessage implements OpenDialogMessageContract
     /**
      * @return null|string
      */
-    public function getText()
+    public function getText():?string
     {
         return $this->text;
     }
