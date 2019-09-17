@@ -43,42 +43,4 @@ class InterpretXmppTest extends TestCase
 
         Bus::assertDispatched(InterpretXmpp::class);
     }
-
-    public function testDataStoredOnJob()
-    {
-        Bus::fake();
-
-        Bus::assertNotDispatched(InterpretXmpp::class);
-
-        $response = $this->json(
-            'post',
-            '/incoming/xmpp',
-            $data = $this->getData()
-        );
-
-        $response->assertStatus(200);
-
-        Bus::assertDispatched(InterpretXmpp::class, function ($job) use ($data) {
-            return $data === $job->request;
-        });
-    }
-
-    public function testUtteranceIsBuilt()
-    {
-        Bus::fake();
-
-        Bus::assertNotDispatched(InterpretXmpp::class);
-
-        $response = $this->json(
-            'post',
-            '/incoming/xmpp',
-            $data = $this->getData()
-        );
-
-        $response->assertStatus(200);
-
-        Bus::assertDispatched(InterpretXmpp::class, function ($job) {
-            return !! is_null($job->utterance);
-        });
-    }
 }

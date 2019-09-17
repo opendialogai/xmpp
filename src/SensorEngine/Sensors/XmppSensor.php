@@ -6,6 +6,7 @@ namespace OpenDialogAi\Xmpp\SensorEngine\Sensors;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
 use OpenDialogAi\Core\Utterances\Exceptions\FieldNotSupported;
 use OpenDialogAi\Core\Utterances\Exceptions\UtteranceUnknownMessageType;
 use OpenDialogAi\Core\Utterances\User;
@@ -36,10 +37,15 @@ class XmppSensor extends BaseSensor
                 $utterance = new TextUtterance();
                 $utterance->setData($content['data']);
                 $utterance->setText($content['data']['text']);
-                $utterance->setUserId($request['user_id']);
-                if (isset($content['user'])) {
-                    $utterance->setUser($this->createUser($request['user_id'], $content['user']));
-                }
+                $utterance->setUserId($userId = Str::random());
+
+                $utterance->setUser(
+                    $this->createUser(
+                        $userId,
+                        $request->all()
+                    )
+                );
+
                 return $utterance;
                 break;
 
@@ -59,8 +65,6 @@ class XmppSensor extends BaseSensor
     {
         $user = new User($userId);
 
-        isset($userData['first_name']) ? $user->setFirstName($userData['first_name']) : null;
-        isset($userData['last_name']) ? $user->setLastName($userData['last_name']) : null;
         isset($userData['email']) ? $user->setEmail($userData['email']) : null;
         isset($userData['external_id']) ? $user->setExternalId($userData['external_id']) : null;
         isset($userData['ipAddress']) ? $user->setIPAddress($userData['ipAddress']) : null;

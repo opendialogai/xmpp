@@ -40,7 +40,7 @@ class IncomingController extends BaseController implements IncomingControllerInt
         Log::info("XMPP endpoint received a valid message of type ${messageType}.");
 
         // dispatch Job
-        InterpretXmpp::dispatch($request->all());
+        InterpretXmpp::dispatch();
 
         return response(null, 200);
     }

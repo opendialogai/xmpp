@@ -6,12 +6,11 @@ namespace OpenDialogAi\Xmpp\Jobs;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Support\Facades\Log;
-use OpenDialogAi\Core\Utterances\User;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
-use OpenDialogAi\Core\Utterances\UtteranceInterface;
-use OpenDialogAi\Xmpp\Utterances\Xmpp\TextUtterance;
+use OpenDialogAi\SensorEngine\SensorInterface;
+use OpenDialogAi\Xmpp\SensorEngine\Sensors\XmppSensor;
 
 class InterpretXmpp implements ShouldQueue
 {
@@ -20,14 +19,9 @@ class InterpretXmpp implements ShouldQueue
     use InteractsWithQueue;
 
     /**
-     * @var array
+     * @var SensorInterface
      */
-    public $request;
-
-    /**
-     * @var UtteranceInterface
-     */
-    public $utterance;
+    public $sensor;
 
     /**
      * Create a new job instance.
@@ -35,49 +29,14 @@ class InterpretXmpp implements ShouldQueue
      * @param  array  $request
      * @return void
      */
-    public function __construct(array $request)
+    public function __construct()
     {
-        $this->request = $request;
+        $this->sensor = new XmppSensor();
     }
 
     public function handle()
     {
         Log::debug('Interpreting XMPP request.');
-        $content = $this->request['content'];
-
-        Log::debug('Received XMPP message.');
-        $this->utterance = $this->buildUtterance($content);
-    }
-
-    protected function buildUtterance(array $content): UtteranceInterface
-    {
-        $utterance = new TextUtterance();
-        $utterance->setData($content['data']);
-        $utterance->setText($content['data']['text']);
-        $utterance->setUserId($this->request['from']);
-        if (isset($content['user'])) {
-            $utterance->setUser($this->createUser($this->request['from'], $content['user']));
-        }
-
-        return $utterance;
-    }
-
-    private function createUser(string $userId, array $userData): User
-    {
-        $user = new User($userId);
-
-        isset($userData['first_name']) ? $user->setFirstName($userData['first_name']) : null;
-        isset($userData['last_name']) ? $user->setLastName($userData['last_name']) : null;
-        isset($userData['email']) ? $user->setEmail($userData['email']) : null;
-        isset($userData['external_id']) ? $user->setExternalId($userData['external_id']) : null;
-        isset($userData['ipAddress']) ? $user->setIPAddress($userData['ipAddress']) : null;
-        isset($userData['country']) ? $user->setCountry($userData['country']) : null;
-        isset($userData['browserLanguage']) ? $user->setBrowserLanguage($userData['browserLanguage']) : null;
-        isset($userData['os']) ? $user->setOS($userData['os']) : null;
-        isset($userData['browser']) ? $user->setBrowser($userData['browser']) : null;
-        isset($userData['timezone']) ? $user->setTimezone($userData['timezone']) : null;
-        isset($userData['custom']) ? $user->setCustomParameters($userData['custom']) : null;
-
-        return $user;
+        $this->sensor->interpret(request());
     }
 }
