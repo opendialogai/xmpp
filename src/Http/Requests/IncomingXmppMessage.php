@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace OpenDialogAi\Xmpp\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use OpenDialogAi\Xmpp\Rules\OpenDialogXmppAddress;
 use OpenDialogAi\SensorEngine\Contracts\IncomingMessageInterface;
 
 class IncomingXmppMessage extends FormRequest implements IncomingMessageInterface
@@ -36,12 +35,12 @@ class IncomingXmppMessage extends FormRequest implements IncomingMessageInterfac
             'from' => [
                 'required',
                 'string',
-                new OpenDialogXmppAddress()
+                'email:rfc,dns,filter'
             ],
             'to' => [
                 'required',
                 'string',
-                new OpenDialogXmppAddress()
+                'email:rfc,dns,filter'
             ],
             'lang' => [
                 'required',

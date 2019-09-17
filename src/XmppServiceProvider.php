@@ -9,6 +9,8 @@ use OpenDialogAi\Core\LoggingHelper;
 use Illuminate\Support\ServiceProvider;
 use OpenDialogAi\ResponseEngine\Service\ResponseEngineService;
 use OpenDialogAi\ResponseEngine\Service\ResponseEngineServiceInterface;
+use OpenDialogAi\SensorEngine\SensorInterface;
+use OpenDialogAi\SensorEngine\Service\SensorService;
 use OpenDialogAi\Xmpp\Http\Requests\IncomingXmppMessage;
 use OpenDialogAi\Core\Http\Middleware\RequestLoggerMiddleware;
 use OpenDialogAi\SensorEngine\Contracts\IncomingMessageInterface;
@@ -46,6 +48,12 @@ class XmppServiceProvider extends ServiceProvider
         );
 
         $this->loadRoutesFrom(__DIR__ . '/../routes/web.php');
+
+        $this->app->bind(SensorInterface::class, function () {
+            $sensorEngine = new SensorService();
+            $sensorEngine->registerAvailableSensors();
+            return $sensorEngine;
+        });
 
         $this->app->bind(IncomingMessageInterface::class, IncomingXmppMessage::class);
 

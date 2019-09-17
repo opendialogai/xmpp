@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Log;
 use OpenDialogAi\Core\Controllers\OpenDialogController;
 use OpenDialogAi\SensorEngine\Contracts\IncomingControllerInterface;
 use OpenDialogAi\SensorEngine\Contracts\IncomingMessageInterface;
+use OpenDialogAi\SensorEngine\SensorInterface;
+use OpenDialogAi\SensorEngine\Service\SensorService;
 use OpenDialogAi\Xmpp\Jobs\InterpretXmpp;
 
 class IncomingController extends BaseController implements IncomingControllerInterface
@@ -32,7 +34,7 @@ class IncomingController extends BaseController implements IncomingControllerInt
      */
     public function receive(IncomingMessageInterface $request): Response
     {
-        $messageType = $request->input('notification');
+        $messageType = $request->get('notification');
 
         // Log that the message was successfully received.
         Log::info("XMPP endpoint received a valid message of type ${messageType}.");

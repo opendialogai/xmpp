@@ -5,8 +5,6 @@ declare(strict_types=1);
 namespace OpenDialogAi\Xmpp\Tests\Jobs;
 
 use Illuminate\Support\Facades\Bus;
-use OpenDialogAi\Core\Utterances\TextUtterance;
-use OpenDialogAi\Core\Utterances\UtteranceInterface;
 use OpenDialogAi\Xmpp\Jobs\InterpretXmpp;
 use OpenDialogAi\Xmpp\Tests\TestCase;
 
@@ -16,7 +14,7 @@ class InterpretXmppTest extends TestCase
     {
         return [
             'notification' => 'message',
-            'from' => $author = 'user1@@xmpp-server.opendialog.ai',
+            'from' => $author = 'user1@example.com',
             'to' => 'user2@xmpp-server.opendialog.ai',
             'lang' => 'en',
             'content' => [

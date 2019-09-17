@@ -12,12 +12,12 @@ class IncomingXmppMessageTest extends TestCase
     {
         return [
             'notification' => 'message',
-            'from' => $author = 'user1@@xmpp-server.opendialog.ai',
-            'to' => 'user2@xmpp-server.opendialog.ai',
+            'from' => 'user@example.com',
+            'to' => 'user2@example.com',
             'lang' => 'en',
             'content' => [
                 'type' => 'text',
-                'author' => $author,
+                'author' => 'user@example.com',
                 'data' => [
                     'text' => 'Some Message'
                 ]
@@ -46,7 +46,8 @@ class IncomingXmppMessageTest extends TestCase
     public function testFromAddressValidation()
     {
         $data = $this->getData();
-        $data['from'] = 'not-allowed@example.com';
+        $data['from'] = $author = 'not-allowed@example';
+        $data['content']['author'] = $author;
 
         $response = $this->json(
             'post',
@@ -57,14 +58,14 @@ class IncomingXmppMessageTest extends TestCase
         $response->assertStatus(422)
             ->assertJson(['errors' => [
                 'from' => [
-                    'The from address must be a correctly formed Open Dialog XMPP address.'
+                    'The from must be a valid email address.'
                 ]]]);
     }
 
     public function testToAddressValidation()
     {
         $data = $this->getData();
-        $data['to'] = 'not-allowed@example.com';
+        $data['to'] = 'fake-id';
 
         $response = $this->json(
             'post',
@@ -75,7 +76,7 @@ class IncomingXmppMessageTest extends TestCase
         $response->assertStatus(422)
             ->assertJson(['errors' => [
                 'to' => [
-                    'The to address must be a correctly formed Open Dialog XMPP address.'
+                    'The to must be a valid email address.'
                 ]]]);
     }
 
@@ -137,7 +138,8 @@ class IncomingXmppMessageTest extends TestCase
     public function testContentAuthorValidates()
     {
         $data = $this->getData();
-        $data['from'] = $author = 'not-allowed@example.com';
+        $data['from'] = 'user@email.com';
+        $data['content']['author'] = 'fake-id';
 
         $response = $this->json(
             'post',
@@ -147,9 +149,6 @@ class IncomingXmppMessageTest extends TestCase
 
         $response->assertStatus(422)
             ->assertJson(['errors' => [
-                'from' => [
-                    'The from address must be a correctly formed Open Dialog XMPP address.'
-                ],
                 'content.author' => [
                     'The content.author and from must match.'
                 ]
