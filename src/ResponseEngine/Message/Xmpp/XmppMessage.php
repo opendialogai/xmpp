@@ -97,7 +97,7 @@ class XmppMessage implements OpenDialogMessageContract
     /**
      * @return array
      */
-    public function getData()
+    public function getData():?array
     {
         return [
             'text' => $this->getText(),
