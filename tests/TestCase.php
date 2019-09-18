@@ -58,7 +58,8 @@ class TestCase extends \Orchestra\Testbench\TestCase
     public function getPackageProviders($app)
     {
         return [
-            \OpenDialogAi\Xmpp\XmppServiceProvider::class
+            \OpenDialogAi\Xmpp\XmppServiceProvider::class,
+            \OpenDialogAi\Core\CoreServiceProvider::class
         ];
     }
 }

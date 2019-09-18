@@ -4,27 +4,15 @@ declare(strict_types=1);
 
 namespace OpenDialogAi\Xmpp\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Log;
-use OpenDialogAi\Core\Controllers\OpenDialogController;
+use OpenDialogAi\Xmpp\Jobs\InterpretXmpp;
+use Illuminate\Routing\Controller as BaseController;
 use OpenDialogAi\SensorEngine\Contracts\IncomingControllerInterface;
 use OpenDialogAi\SensorEngine\Contracts\IncomingMessageInterface;
-use OpenDialogAi\SensorEngine\SensorInterface;
-use OpenDialogAi\SensorEngine\Service\SensorService;
-use OpenDialogAi\Xmpp\Jobs\InterpretXmpp;
 
 class IncomingController extends BaseController implements IncomingControllerInterface
 {
-    /** @var OpenDialogController */
-    private $odController;
-
-    public function __construct(OpenDialogController $odController)
-    {
-        $this->odController = $odController;
-    }
-
     /**
      * It receives an incoming request
      *
