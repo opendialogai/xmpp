@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5511da9a8c2bf0269540aad16bb3a833",
+    "content-hash": "0fb2d1b06abb619a34d36380f7326535",
     "packages": [
         {
             "name": "anahkiasen/underscore-php",
@@ -1210,12 +1210,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/opendialogai/core.git",
-                "reference": "dc9c3ea93fb1c19266a1c12cbacb6c53523f6fa9"
+                "reference": "0a440cbef71fd942d4fbe7fe764174fd1465339f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/opendialogai/core/zipball/dc9c3ea93fb1c19266a1c12cbacb6c53523f6fa9",
-                "reference": "dc9c3ea93fb1c19266a1c12cbacb6c53523f6fa9",
+                "url": "https://api.github.com/repos/opendialogai/core/zipball/0a440cbef71fd942d4fbe7fe764174fd1465339f",
+                "reference": "0a440cbef71fd942d4fbe7fe764174fd1465339f",
                 "shasum": ""
             },
             "require": {
@@ -1288,7 +1288,7 @@
                 }
             ],
             "description": "The OpenDialog core package",
-            "time": "2019-09-17T16:24:01+00:00"
+            "time": "2019-09-18T09:39:46+00:00"
         },
         {
             "name": "opendialogai/dgraph-docker",
@@ -1583,56 +1583,6 @@
                 "type"
             ],
             "time": "2015-07-25T16:39:46+00:00"
-        },
-        {
-            "name": "predis/predis",
-            "version": "v1.1.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/nrk/predis.git",
-                "reference": "f0210e38881631afeafb56ab43405a92cafd9fd1"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/nrk/predis/zipball/f0210e38881631afeafb56ab43405a92cafd9fd1",
-                "reference": "f0210e38881631afeafb56ab43405a92cafd9fd1",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.9"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "~4.8"
-            },
-            "suggest": {
-                "ext-curl": "Allows access to Webdis when paired with phpiredis",
-                "ext-phpiredis": "Allows faster serialization and deserialization of the Redis protocol"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Predis\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Daniele Alessandri",
-                    "email": "suppakilla@gmail.com",
-                    "homepage": "http://clorophilla.net"
-                }
-            ],
-            "description": "Flexible and feature-complete Redis client for PHP and HHVM",
-            "homepage": "http://github.com/nrk/predis",
-            "keywords": [
-                "nosql",
-                "predis",
-                "redis"
-            ],
-            "time": "2016-06-16T16:22:20+00:00"
         },
         {
             "name": "psr/container",
