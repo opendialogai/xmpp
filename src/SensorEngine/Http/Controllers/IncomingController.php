@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace OpenDialogAi\Xmpp\Http\Controllers;
+namespace OpenDialogAi\Xmpp\SensorEngine\Http\Controllers;
 
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Log;
-use OpenDialogAi\Xmpp\Jobs\InterpretXmpp;
+use OpenDialogAi\Xmpp\ResponseEngine\Jobs\InterpretXmpp;
 use Illuminate\Routing\Controller as BaseController;
 use OpenDialogAi\SensorEngine\Contracts\IncomingControllerInterface;
 use OpenDialogAi\SensorEngine\Contracts\IncomingMessageInterface;

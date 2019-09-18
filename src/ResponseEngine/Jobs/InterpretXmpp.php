@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace OpenDialogAi\Xmpp\Jobs;
+namespace OpenDialogAi\Xmpp\ResponseEngine\Jobs;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Support\Facades\Log;

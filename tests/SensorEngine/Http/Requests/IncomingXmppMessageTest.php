@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace OpenDialogAi\Xmpp\Tests\Http\Requests;
+namespace OpenDialogAi\Xmpp\Tests\SensorEngine\Http\Requests;
 
 use OpenDialogAi\Xmpp\Tests\TestCase;
 

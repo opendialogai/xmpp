@@ -11,7 +11,7 @@ use OpenDialogAi\ResponseEngine\Service\ResponseEngineService;
 use OpenDialogAi\ResponseEngine\Service\ResponseEngineServiceInterface;
 use OpenDialogAi\SensorEngine\SensorInterface;
 use OpenDialogAi\SensorEngine\Service\SensorService;
-use OpenDialogAi\Xmpp\Http\Requests\IncomingXmppMessage;
+use OpenDialogAi\Xmpp\SensorEngine\Http\Requests\IncomingXmppMessage;
 use OpenDialogAi\Core\Http\Middleware\RequestLoggerMiddleware;
 use OpenDialogAi\SensorEngine\Contracts\IncomingMessageInterface;
 

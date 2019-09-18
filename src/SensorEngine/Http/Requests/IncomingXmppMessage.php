@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace OpenDialogAi\Xmpp\Http\Requests;
+namespace OpenDialogAi\Xmpp\SensorEngine\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use OpenDialogAi\SensorEngine\Contracts\IncomingMessageInterface;

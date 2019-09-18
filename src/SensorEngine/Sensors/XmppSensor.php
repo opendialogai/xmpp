@@ -33,7 +33,7 @@ class XmppSensor extends BaseSensor
         $content = $request['content'];
         switch ($content['type']) {
             case 'text':
-                Log::debug('Received webchat message.');
+                Log::debug('Received XMPP message.');
                 $utterance = new TextUtterance();
                 $utterance->setData($content['data']);
                 $utterance->setText($content['data']['text']);

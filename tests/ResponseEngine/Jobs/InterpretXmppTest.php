@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace OpenDialogAi\Xmpp\Tests\Jobs;
+namespace OpenDialogAi\Xmpp\Tests\ResponseEngine\Jobs;
 
 use Illuminate\Support\Facades\Bus;
-use OpenDialogAi\Xmpp\Jobs\InterpretXmpp;
 use OpenDialogAi\Xmpp\Tests\TestCase;
+use OpenDialogAi\Xmpp\ResponseEngine\Jobs\InterpretXmpp;
 
 class InterpretXmppTest extends TestCase
 {
