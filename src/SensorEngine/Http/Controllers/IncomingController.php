@@ -6,7 +6,6 @@ namespace OpenDialogAi\Xmpp\SensorEngine\Http\Controllers;
 
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Log;
-use OpenDialogAi\SensorEngine\Service\SensorService;
 use OpenDialogAi\Xmpp\DataTransferObjects\XmppDTO;
 use OpenDialogAi\Xmpp\ResponseEngine\Jobs\InterpretXmpp;
 use Illuminate\Routing\Controller as BaseController;

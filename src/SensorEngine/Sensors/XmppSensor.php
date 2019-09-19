@@ -13,7 +13,6 @@ use OpenDialogAi\Core\Utterances\Exceptions\UtteranceUnknownMessageType;
 use OpenDialogAi\Core\Utterances\User;
 use OpenDialogAi\Core\Utterances\UtteranceInterface;
 use OpenDialogAi\SensorEngine\BaseSensor;
-use OpenDialogAi\Xmpp\DataTransferObjects\XmppDTO;
 use OpenDialogAi\Xmpp\Utterances\Xmpp\TextUtterance;
 
 class XmppSensor extends BaseSensor
@@ -25,12 +24,12 @@ class XmppSensor extends BaseSensor
     /**
      * Interpret a request.
      *
-     * @param XmppDTO $dto
+     * @param Request $request
      * @return UtteranceInterface
      * @throws UtteranceUnknownMessageType
      * @throws FieldNotSupported
      */
-    public function interpret(XmppDTO $dto): UtteranceInterface
+    public function interpret(Request $request): UtteranceInterface
     {
         Log::debug('Interpreting XMPP request.');
 

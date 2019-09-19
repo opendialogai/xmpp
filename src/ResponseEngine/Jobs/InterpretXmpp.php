@@ -44,6 +44,6 @@ class InterpretXmpp implements ShouldQueue
     public function handle()
     {
         Log::debug('Interpreting XMPP request.');
-        $this->sensor->interpret($this->dto);
+        $this->sensor->interpret(request());
     }
 }
