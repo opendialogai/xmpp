@@ -18,14 +18,6 @@ To install using [Composer](https://getcomposer.org/) run the following command:
 
 `composer require opendialogai/xmpp`
 
-## Extras
-
-Currently the XMPP processing is handled by dispatching a `Job`.
-For the Queue handling we have chosen to use redis, which will
-allow us to use `Laravel Horizon` to monitor these Jobs in a development environment.
-
-Please ensure you setup redis correctly.
-
 ## Local Config
 To publish config files for local set up and customisation, run
 

@@ -6,6 +6,8 @@ namespace OpenDialogAi\Xmpp\SensorEngine\Http\Controllers;
 
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Log;
+use OpenDialogAi\SensorEngine\Service\SensorService;
+use OpenDialogAi\Xmpp\DataTransferObjects\XmppDTO;
 use OpenDialogAi\Xmpp\ResponseEngine\Jobs\InterpretXmpp;
 use Illuminate\Routing\Controller as BaseController;
 use OpenDialogAi\SensorEngine\Contracts\IncomingControllerInterface;
@@ -13,6 +15,16 @@ use OpenDialogAi\SensorEngine\Contracts\IncomingMessageInterface;
 
 class IncomingController extends BaseController implements IncomingControllerInterface
 {
+//    /**
+//     * @var \OpenDialogAi\SensorEngine\SensorInterface
+//     */
+//    private $sensor;
+//
+//    public function __construct(SensorService $sensorService)
+//    {
+//        $this->sensor = $sensorService->getSensor('sensor.core.xmpp');
+//    }
+
     /**
      * It receives an incoming request
      *
@@ -27,9 +39,24 @@ class IncomingController extends BaseController implements IncomingControllerInt
         // Log that the message was successfully received.
         Log::info("XMPP endpoint received a valid message of type ${messageType}.");
 
+        $dataTransferObject = $this->build($request->all());
+
         // dispatch Job
-        InterpretXmpp::dispatch();
+        InterpretXmpp::dispatch($dataTransferObject);
 
         return response(null, 200);
+    }
+
+    protected function build(array $data): XmppDTO
+    {
+        $dto = new XmppDTO();
+        $dto->setNotification($data['notification'])
+            ->setFrom($data['from'])
+            ->setTo($data['to'])
+            ->setLanguage($data['lang'])
+            ->setContentType($data['content']['type'])
+            ->setContentData($data['content']['data']['text']);
+
+        return $dto;
     }
 }
