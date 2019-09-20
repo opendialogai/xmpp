@@ -14,16 +14,6 @@ use OpenDialogAi\SensorEngine\Contracts\IncomingMessageInterface;
 
 class IncomingController extends BaseController implements IncomingControllerInterface
 {
-//    /**
-//     * @var \OpenDialogAi\SensorEngine\SensorInterface
-//     */
-//    private $sensor;
-//
-//    public function __construct(SensorService $sensorService)
-//    {
-//        $this->sensor = $sensorService->getSensor('sensor.core.xmpp');
-//    }
-
     /**
      * It receives an incoming request
      *
