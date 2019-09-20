@@ -2,9 +2,7 @@
 
 declare(strict_types=1);
 
-namespace OpenDialogAi\Example\Tests;
-
-use OpenDialogAI\Example\ExampleServiceProvider;
+namespace OpenDialogAi\Xmpp\Tests;
 
 class TestCase extends \Orchestra\Testbench\TestCase
 {
@@ -29,6 +27,7 @@ class TestCase extends \Orchestra\Testbench\TestCase
         if (!defined('LARAVEL_START')) {
             define('LARAVEL_START', microtime(true));
         }
+
         $this->artisan('migrate', [
             '--database' => 'testbench'
         ]);
@@ -45,13 +44,6 @@ class TestCase extends \Orchestra\Testbench\TestCase
         $this->app['config']->set($configName, $config);
     }
 
-    public function getPackageProviders($app)
-    {
-        return [
-            ExampleServiceProvider::class
-        ];
-    }
-
     protected function getEnvironmentSetUp($app)
     {
         # Setup default database to use sqlite :memory:
@@ -61,5 +53,13 @@ class TestCase extends \Orchestra\Testbench\TestCase
             'database' => ':memory:',
             'prefix'   => '',
         ]);
+    }
+
+    public function getPackageProviders($app)
+    {
+        return [
+            \OpenDialogAi\Xmpp\XmppServiceProvider::class,
+            \OpenDialogAi\Core\CoreServiceProvider::class
+        ];
     }
 }
