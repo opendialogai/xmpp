@@ -68,8 +68,8 @@ class XmppSensor extends BaseSensor
     {
         $user = new User($userId);
 
-        isset($userData['email']) ? $user->setEmail($userData['from']) : null;
-        isset($userData['external_id']) ? $user->setExternalId($userData['external_id']) : null;
+        isset($userData['from']) ? $user->setEmail($userData['from']) : null;
+        isset($userData['from']) ? $user->setExternalId($userData['from']) : null;
 
         return $user;
     }

@@ -16,25 +16,16 @@ class XmppSensorTestBase extends TestCase
      */
     protected function generateResponseMessage($type, $data): array
     {
-        $arr = [
+        return [
             'notification' => 'message',
-            'user_id' => 'someuser',
-            'author' => '{jid}',
+            'from' => $from = 'user@email.com',
+            'to' => 'person@email.com',
+            'lang' => 'en',
             'content' => [
-                'author' => 'me',
                 'type' => $type,
-                'data' => $data,
-                'user' => [
-                    'ipAddress' => '127.0.0.1',
-                    'country' => 'UK',
-                    'browserLanguage' => 'en-gb',
-                    'os' => 'macos',
-                    'browser' => 'safari',
-                    'timezone' => 'GMT',
-                ],
+                'author' => $from,
+                'data' => $data
             ],
         ];
-
-        return $arr;
     }
 }

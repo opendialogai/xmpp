@@ -20,11 +20,10 @@ class XmppSensorTest extends XmppSensorTestBase
         $this->sensor = new XmppSensor();
     }
 
-    public function testFormResponse()
+    public function testSensorAcceptsRequest()
     {
         $data = [
-            'name' => 'value',
-            'text' => 'name: value'
+            'text' => 'A message'
         ];
 
         $body = $this->generateResponseMessage('text', $data);
@@ -33,5 +32,18 @@ class XmppSensorTest extends XmppSensorTestBase
 
         $this->assertCount(count($data), $utterance->getData());
         $this->assertEquals($data, $utterance->getData());
+    }
+
+    public function testSensorReturnsAnUtteranceWithCorrectUserData()
+    {
+        $data = [
+            'text' => 'A message'
+        ];
+
+        $body = $this->generateResponseMessage('text', $data);
+        $utterance = $this->sensor->interpret(new Request($body));
+        $user = $utterance->getUser();
+        $this->assertEquals($user->getEmail(), $body['from']);
+        $this->assertEquals($user->getExternalId(), $body['from']);
     }
 }
