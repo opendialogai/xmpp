@@ -49,7 +49,7 @@
         }
     },
     "scripts": {
-        "test": "./vendor/bin/phpunit",
+        "test": "phpdbg -qrr ./vendor/bin/phpunit --coverage-html build/coverage-report -d memory_limit=512M",
         "cs": "./vendor/bin/phpcbf --standard=PSR12 --report=full src/"
     }
 }
