@@ -26,7 +26,7 @@ interface CommunicationInterface
 
     public function getPayload():?array;
 
-    public function setProtocol(string $protocol);
+    public function setProtocol(?string $protocol);
 
     public function getProtocol():?string;
 
