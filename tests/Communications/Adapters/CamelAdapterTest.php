@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace OpenDialogAi\Xmpp\Tests\Communications\Adapters;
 
+use GuzzleHttp\Client;
 use OpenDialogAi\Xmpp\Communications\Adapters\CamelAdapter;
 use OpenDialogAi\Xmpp\Tests\TestCase;
 
@@ -65,6 +66,13 @@ class CamelAdapterTest extends TestCase
         $this->adapter->setEndpoint($endpoint = 'some-endpoint');
 
         $this->assertEquals($endpoint, $this->adapter->getEndpoint());
+    }
+
+    public function testAdapterHasTheCorrectClient()
+    {
+        $this->assertEquals(null, $this->adapter->getClient());
+        $this->adapter->setClient(new Client());
+        $this->assertInstanceOf(Client::class, $this->adapter->getClient());
     }
 
     public function testAdapterCanBuildUrl()

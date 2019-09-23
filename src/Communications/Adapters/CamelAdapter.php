@@ -108,7 +108,7 @@ class CamelAdapter implements CommunicationInterface
         $this->client = $client;
     }
 
-    public function getClient(): Client
+    public function getClient():?Client
     {
         return $this->client;
     }

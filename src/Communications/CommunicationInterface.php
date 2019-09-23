@@ -12,7 +12,7 @@ interface CommunicationInterface
 
     public function setClient(Client $client);
 
-    public function getClient(): Client;
+    public function getClient():?Client;
 
     public function setUrl(string $url);
 
