@@ -8,6 +8,7 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
+use Illuminate\Support\Facades\Log;
 use OpenDialogAi\Xmpp\Communications\CommunicationInterface;
 
 class CamelAdapter implements CommunicationInterface
@@ -124,7 +125,8 @@ class CamelAdapter implements CommunicationInterface
             $response = $this->client->send($request);
             return $response;
         } catch (GuzzleException $e) {
-            //
+            // @todo return gracefully
+            Log::warning($e->getMessage());
         }
     }
 
