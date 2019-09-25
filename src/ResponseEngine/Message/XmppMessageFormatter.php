@@ -8,6 +8,7 @@ use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Support\Facades\Log;
 use OpenDialogAi\ContextEngine\ContextParser;
 use OpenDialogAi\ContextEngine\Facades\ContextService;
+use OpenDialogAi\Core\Traits\HasName;
 use OpenDialogAi\ResponseEngine\Message\MessageFormatterInterface;
 use OpenDialogAi\ResponseEngine\Message\OpenDialogMessage;
 use OpenDialogAi\ResponseEngine\Message\ButtonMessage;
@@ -24,8 +25,12 @@ use SimpleXMLElement;
 
 class XmppMessageFormatter implements MessageFormatterInterface
 {
+    use HasName;
+
     /** @var ResponseEngineService */
     private $responseEngineService;
+
+    protected static $name = 'formatter.core.xmpp';
 
     /** @var array  */
     protected $messages = [];

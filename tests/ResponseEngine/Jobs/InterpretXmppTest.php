@@ -4,11 +4,15 @@ declare(strict_types=1);
 
 namespace OpenDialogAi\Xmpp\Tests\ResponseEngine\Jobs;
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Bus;
+use Illuminate\Support\Facades\Queue;
 use OpenDialogAi\Core\Attribute\StringAttribute;
 use OpenDialogAi\Core\Graph\DGraph\DGraphClient;
+use OpenDialogAi\Xmpp\SensorEngine\Sensors\XmppSensor;
 use OpenDialogAi\Xmpp\Tests\TestCase;
 use OpenDialogAi\Xmpp\ResponseEngine\Jobs\InterpretXmpp;
+use OpenDialogAi\Xmpp\Utterances\Xmpp\TextUtterance;
 
 class InterpretXmppTest extends TestCase
 {
@@ -62,5 +66,23 @@ class InterpretXmppTest extends TestCase
         $response->assertStatus(200);
 
         Bus::assertDispatched(InterpretXmpp::class);
+    }
+
+    public function testUtteranceIsCorrectType()
+    {
+        Queue::fake();
+
+        $response = $this->json(
+            'post',
+            '/incoming/xmpp',
+            $data = $this->getData()
+        );
+
+        $response->assertStatus(200);
+
+        // Make sure correct utterance is created.
+        Queue::assertPushed(InterpretXmpp::class, function ($job) {
+            return $job->utterance instanceof TextUtterance;
+        });
     }
 }

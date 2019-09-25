@@ -21,7 +21,7 @@ class InterpretXmpp implements ShouldQueue
     /**
      * @var TextUtterance
      */
-    protected $utterance;
+    public $utterance;
 
     /**
      * @var \OpenDialogAi\ResponseEngine\Message\OpenDialogMessages
@@ -41,7 +41,7 @@ class InterpretXmpp implements ShouldQueue
 
     public function handle(OpenDialogController $odController)
     {
-        Log::debug('Interpreting XMPP request.');
+        Log::debug('XMPP Job is being handled.');
 
         $messageWrapper = $odController->runConversation($this->utterance);
 

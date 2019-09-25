@@ -33,9 +33,16 @@ class XmppServiceProvider extends ServiceProvider
             'opendialog.xmpp'
         );
 
+        // Merge in XMPP sensor
         $this->mergeConfigFrom(
             __DIR__ . '/../config/opendialog-sensorengine.php',
             'opendialog.sensor_engine'
+        );
+
+        // Merge in XMPP formatter
+        $this->mergeConfigFrom(
+            __DIR__ . '/../config/opendialog-responseengine.php',
+            'opendialog.response_engine'
         );
 
         $this->loadRoutesFrom(__DIR__ . '/../routes/web.php');
@@ -48,6 +55,7 @@ class XmppServiceProvider extends ServiceProvider
 
         $this->app->bind(ResponseEngineServiceInterface::class, function () {
             $service = new ResponseEngineService();
+            $service->registerAvailableFormatters();
             return $service;
         });
 
