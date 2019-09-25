@@ -5,11 +5,12 @@ declare(strict_types=1);
 namespace OpenDialogAi\Xmpp;
 
 use Illuminate\Support\ServiceProvider;
+use OpenDialogAi\ConversationEngine\ConversationEngineInterface;
+use OpenDialogAi\ConversationLog\Service\ConversationLogService;
+use OpenDialogAi\Core\Controllers\OpenDialogController;
 use OpenDialogAi\SensorEngine\SensorInterface;
 use OpenDialogAi\SensorEngine\Service\SensorService;
 use OpenDialogAi\ResponseEngine\Service\ResponseEngineService;
-use OpenDialogAi\SensorEngine\Contracts\IncomingMessageInterface;
-use OpenDialogAi\Xmpp\SensorEngine\Http\Requests\IncomingXmppMessage;
 use OpenDialogAi\ResponseEngine\Service\ResponseEngineServiceInterface;
 
 class XmppServiceProvider extends ServiceProvider
@@ -40,11 +41,19 @@ class XmppServiceProvider extends ServiceProvider
             return $sensorEngine;
         });
 
-        $this->app->bind(IncomingMessageInterface::class, IncomingXmppMessage::class);
-
         $this->app->bind(ResponseEngineServiceInterface::class, function () {
             $service = new ResponseEngineService();
             return $service;
+        });
+
+        $this->app->singleton(OpenDialogController::class, function () {
+            $odController = new OpenDialogController();
+
+            $odController->setConversationLogService($this->app->make(ConversationLogService::class));
+            $odController->setConversationEngine($this->app->make(ConversationEngineInterface::class));
+            $odController->setResponseEngine($this->app->make(ResponseEngineServiceInterface::class));
+
+            return $odController;
         });
     }
 }
