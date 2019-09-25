@@ -33,6 +33,11 @@ class XmppServiceProvider extends ServiceProvider
             'opendialog.xmpp'
         );
 
+        $this->mergeConfigFrom(
+            __DIR__ . '/../config/opendialog-sensorengine.php',
+            'opendialog.sensor_engine'
+        );
+
         $this->loadRoutesFrom(__DIR__ . '/../routes/web.php');
 
         $this->app->bind(SensorInterface::class, function () {

@@ -9,9 +9,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
-use OpenDialogAi\SensorEngine\SensorInterface;
-use OpenDialogAi\Xmpp\DataTransferObjects\XmppDTO;
-use OpenDialogAi\Xmpp\SensorEngine\Sensors\XmppSensor;
+use OpenDialogAi\Xmpp\Utterances\Xmpp\TextUtterance;
 
 class InterpretXmpp implements ShouldQueue
 {
@@ -20,30 +18,23 @@ class InterpretXmpp implements ShouldQueue
     use InteractsWithQueue;
 
     /**
-     * @var SensorInterface
+     * @var TextUtterance
      */
-    public $sensor;
-
-    /**
-     * @var XmppDTO
-     */
-    private $dto;
+    protected $utterance;
 
     /**
      * Create a new job instance.
      *
-     * @param  array  $request
+     * @param  TextUtterance  $utterance
      * @return void
      */
-    public function __construct(XmppDTO $dto)
+    public function __construct(TextUtterance $utterance)
     {
-        $this->dto = $dto;
-        $this->sensor = new XmppSensor();
+        $this->utterance = $utterance;
     }
 
     public function handle()
     {
         Log::debug('Interpreting XMPP request.');
-        $this->sensor->interpret(request());
     }
 }

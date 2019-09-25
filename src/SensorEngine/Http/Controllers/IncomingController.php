@@ -14,6 +14,7 @@ use Illuminate\Routing\Controller as BaseController;
 use OpenDialogAi\SensorEngine\Contracts\IncomingControllerInterface;
 use OpenDialogAi\SensorEngine\Contracts\IncomingMessageInterface;
 use OpenDialogAi\Xmpp\SensorEngine\Http\Requests\IncomingXmppMessage;
+use OpenDialogAi\Xmpp\SensorEngine\Sensors\XmppSensor;
 
 class IncomingController extends BaseController
 {
@@ -26,19 +27,19 @@ class IncomingController extends BaseController
     private $sensor;
 
     /**
-     * WebchatIncomingController constructor.
+     * IncomingController constructor.
      * @param SensorService $sensorService
      * @param OpenDialogController $odController
      */
     public function __construct(SensorService $sensorService, OpenDialogController $odController)
     {
         $this->odController = $odController;
-        $this->sensor = $sensorService->getSensor('sensor.core.webchat');
+        $this->sensor = $sensorService->getSensor('sensor.core.xmpp');
     }
     /**
      * It receives an incoming request
      *
-     * @param IncomingMessageInterface $request The request
+     * @param IncomingXmppMessage $request The request
      *
      * @return Response
      */
@@ -49,26 +50,11 @@ class IncomingController extends BaseController
         // Log that the message was successfully received.
         Log::info("XMPP endpoint received a valid message of type ${messageType}.");
 
-
-
-        $dataTransferObject = $this->build($request->all());
+        $utterance = $this->sensor->interpret($request);
 
         // dispatch Job
-        InterpretXmpp::dispatch($dataTransferObject);
+        InterpretXmpp::dispatch($utterance);
 
         return response(null, 200);
-    }
-
-    protected function build(array $data): XmppDTO
-    {
-        $dto = new XmppDTO();
-        $dto->setNotification($data['notification'])
-            ->setFrom($data['from'])
-            ->setTo($data['to'])
-            ->setLanguage($data['lang'])
-            ->setContentType($data['content']['type'])
-            ->setContentData($data['content']['data']['text']);
-
-        return $dto;
     }
 }
