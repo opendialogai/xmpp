@@ -41,6 +41,8 @@ class IncomingController extends BaseController
         // Log that the message was successfully received.
         Log::info("XMPP endpoint received a valid message of type ${messageType}.");
 
+        Log::debug('Interpreting XMPP request.');
+
         $utterance = $this->sensor->interpret($request);
 
         // dispatch Job
@@ -48,6 +50,7 @@ class IncomingController extends BaseController
             InterpretXmpp::dispatch($utterance);
         } catch (\Exception $e) {
             // silently fail for now
+            Log::debug($e->getMessage());
         }
 
         return response(null, 200);
