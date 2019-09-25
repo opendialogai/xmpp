@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
+use OpenDialogAi\Core\Controllers\OpenDialogController;
 use OpenDialogAi\Xmpp\Utterances\Xmpp\TextUtterance;
 
 class InterpretXmpp implements ShouldQueue
@@ -23,6 +24,11 @@ class InterpretXmpp implements ShouldQueue
     protected $utterance;
 
     /**
+     * @var \OpenDialogAi\ResponseEngine\Message\OpenDialogMessages
+     */
+    public $message;
+
+    /**
      * Create a new job instance.
      *
      * @param  TextUtterance  $utterance
@@ -33,8 +39,16 @@ class InterpretXmpp implements ShouldQueue
         $this->utterance = $utterance;
     }
 
-    public function handle()
+    public function handle(OpenDialogController $odController)
     {
         Log::debug('Interpreting XMPP request.');
+
+        $messageWrapper = $odController->runConversation($this->utterance);
+
+        $this->message = $messageWrapper;
+
+        Log::debug(sprintf('Sending response: %s', json_encode($messageWrapper->getMessageToPost())));
+
+        $messages = $messageWrapper->getMessageToPost();
     }
 }

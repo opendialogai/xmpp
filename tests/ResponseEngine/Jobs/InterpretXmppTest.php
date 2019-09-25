@@ -5,11 +5,26 @@ declare(strict_types=1);
 namespace OpenDialogAi\Xmpp\Tests\ResponseEngine\Jobs;
 
 use Illuminate\Support\Facades\Bus;
+use OpenDialogAi\Core\Graph\DGraph\DGraphClient;
 use OpenDialogAi\Xmpp\Tests\TestCase;
 use OpenDialogAi\Xmpp\ResponseEngine\Jobs\InterpretXmpp;
 
 class InterpretXmppTest extends TestCase
 {
+    protected $dGraph;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->publishConversation($this->conversation1());
+        $this->publishConversation($this->conversation2());
+        $this->publishConversation($this->conversation3());
+        $this->publishConversation($this->conversation4());
+
+        $this->dGraph = app()->make(DGraphClient::class);
+    }
+
     protected function getData()
     {
         return [
@@ -41,6 +56,8 @@ class InterpretXmppTest extends TestCase
 
         $response->assertStatus(200);
 
-        Bus::assertDispatched(InterpretXmpp::class);
+        Bus::assertDispatched(InterpretXmpp::class, function ($job) {
+            dd($job->message);
+        });
     }
 }

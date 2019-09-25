@@ -8,19 +8,12 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Log;
 use OpenDialogAi\Core\Controllers\OpenDialogController;
 use OpenDialogAi\SensorEngine\Service\SensorService;
-use OpenDialogAi\Xmpp\DataTransferObjects\XmppDTO;
 use OpenDialogAi\Xmpp\ResponseEngine\Jobs\InterpretXmpp;
 use Illuminate\Routing\Controller as BaseController;
-use OpenDialogAi\SensorEngine\Contracts\IncomingControllerInterface;
-use OpenDialogAi\SensorEngine\Contracts\IncomingMessageInterface;
 use OpenDialogAi\Xmpp\SensorEngine\Http\Requests\IncomingXmppMessage;
-use OpenDialogAi\Xmpp\SensorEngine\Sensors\XmppSensor;
 
 class IncomingController extends BaseController
 {
-    /** @var OpenDialogController */
-    private $odController;
-
     /**
      * @var \OpenDialogAi\SensorEngine\SensorInterface
      */
@@ -29,11 +22,9 @@ class IncomingController extends BaseController
     /**
      * IncomingController constructor.
      * @param SensorService $sensorService
-     * @param OpenDialogController $odController
      */
-    public function __construct(SensorService $sensorService, OpenDialogController $odController)
+    public function __construct(SensorService $sensorService)
     {
-        $this->odController = $odController;
         $this->sensor = $sensorService->getSensor('sensor.core.xmpp');
     }
     /**
@@ -53,7 +44,11 @@ class IncomingController extends BaseController
         $utterance = $this->sensor->interpret($request);
 
         // dispatch Job
-        InterpretXmpp::dispatch($utterance);
+        try {
+            InterpretXmpp::dispatch($utterance);
+        } catch (\Exception $e) {
+            // silently fail for now
+        }
 
         return response(null, 200);
     }
