@@ -829,16 +829,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v6.0.3",
+            "version": "v6.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "56789e9dec750e0fbe8e9e6ae90a01a4e6887902"
+                "reference": "372e0add8a58e0e3deb78f87cbb2dc40d3e0ff08"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/56789e9dec750e0fbe8e9e6ae90a01a4e6887902",
-                "reference": "56789e9dec750e0fbe8e9e6ae90a01a4e6887902",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/372e0add8a58e0e3deb78f87cbb2dc40d3e0ff08",
+                "reference": "372e0add8a58e0e3deb78f87cbb2dc40d3e0ff08",
                 "shasum": ""
             },
             "require": {
@@ -970,7 +970,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2019-09-10T18:46:24+00:00"
+            "time": "2019-09-24T13:40:36+00:00"
         },
         {
             "name": "league/flysystem",
@@ -1210,12 +1210,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/opendialogai/core.git",
-                "reference": "7943ca0d9c6cf77226468b2909549df38ea77a05"
+                "reference": "f37c140a79a69bcb8dd1be68ff91185157c68dce"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/opendialogai/core/zipball/7943ca0d9c6cf77226468b2909549df38ea77a05",
-                "reference": "7943ca0d9c6cf77226468b2909549df38ea77a05",
+                "url": "https://api.github.com/repos/opendialogai/core/zipball/f37c140a79a69bcb8dd1be68ff91185157c68dce",
+                "reference": "f37c140a79a69bcb8dd1be68ff91185157c68dce",
                 "shasum": ""
             },
             "require": {
@@ -1270,7 +1270,8 @@
                     "OpenDialogAi\\ResponseEngine\\": "src/ResponseEngine",
                     "OpenDialogAi\\InterpreterEngine\\": "src/InterpreterEngine",
                     "OpenDialogAi\\SensorEngine\\": "src/SensorEngine",
-                    "OpenDialogAi\\Core\\Database\\": "database/"
+                    "OpenDialogAi\\Core\\Database\\": "database/",
+                    "OpenDialogAi\\Core\\Tests\\": "tests/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -1288,7 +1289,7 @@
                 }
             ],
             "description": "The OpenDialog core package",
-            "time": "2019-09-18T13:12:29+00:00"
+            "time": "2019-09-25T11:42:09+00:00"
         },
         {
             "name": "opendialogai/dgraph-docker",
@@ -4596,24 +4597,24 @@
         },
         {
             "name": "orchestra/testbench",
-            "version": "v4.0.0",
+            "version": "v4.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/orchestral/testbench.git",
-                "reference": "bde8b826bde3bd39a2a87e6cd328501e19c60cc9"
+                "reference": "a10dbc9dba64c6fb98b5169f4daf476691596968"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/orchestral/testbench/zipball/bde8b826bde3bd39a2a87e6cd328501e19c60cc9",
-                "reference": "bde8b826bde3bd39a2a87e6cd328501e19c60cc9",
+                "url": "https://api.github.com/repos/orchestral/testbench/zipball/a10dbc9dba64c6fb98b5169f4daf476691596968",
+                "reference": "a10dbc9dba64c6fb98b5169f4daf476691596968",
                 "shasum": ""
             },
             "require": {
                 "laravel/framework": "^6.0",
-                "mockery/mockery": "^1.0",
+                "mockery/mockery": "^1.2.3",
                 "orchestra/testbench-core": "^4.0",
                 "php": ">=7.2",
-                "phpunit/phpunit": "^8.0"
+                "phpunit/phpunit": "^8.3"
             },
             "type": "library",
             "extra": {
@@ -4642,7 +4643,7 @@
                 "orchestral",
                 "testing"
             ],
-            "time": "2019-09-03T20:02:19+00:00"
+            "time": "2019-09-24T06:46:06+00:00"
         },
         {
             "name": "orchestra/testbench-core",
@@ -5014,16 +5015,16 @@
         },
         {
             "name": "phpro/grumphp",
-            "version": "v0.16.0",
+            "version": "v0.16.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpro/grumphp.git",
-                "reference": "56cb5103177cc61046cf1cf92913b5b4258d9cb7"
+                "reference": "079cb90c740d8a83a769b6484d74645eedb7f74c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpro/grumphp/zipball/56cb5103177cc61046cf1cf92913b5b4258d9cb7",
-                "reference": "56cb5103177cc61046cf1cf92913b5b4258d9cb7",
+                "url": "https://api.github.com/repos/phpro/grumphp/zipball/079cb90c740d8a83a769b6484d74645eedb7f74c",
+                "reference": "079cb90c740d8a83a769b6484d74645eedb7f74c",
                 "shasum": ""
             },
             "require": {
@@ -5115,7 +5116,7 @@
                 }
             ],
             "description": "A composer plugin that enables source code quality checks.",
-            "time": "2019-09-09T11:22:39+00:00"
+            "time": "2019-09-22T07:37:49+00:00"
         },
         {
             "name": "phpspec/prophecy",

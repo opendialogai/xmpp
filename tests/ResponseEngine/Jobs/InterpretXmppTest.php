@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace OpenDialogAi\Xmpp\Tests\ResponseEngine\Jobs;
 
 use Illuminate\Support\Facades\Bus;
+use OpenDialogAi\Core\Attribute\StringAttribute;
 use OpenDialogAi\Core\Graph\DGraph\DGraphClient;
 use OpenDialogAi\Xmpp\Tests\TestCase;
 use OpenDialogAi\Xmpp\ResponseEngine\Jobs\InterpretXmpp;
@@ -16,6 +17,10 @@ class InterpretXmppTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
+
+        $attributes = ['test' => StringAttribute::class];
+
+        $this->setCustomAttributes($attributes);
 
         $this->publishConversation($this->conversation1());
         $this->publishConversation($this->conversation2());
@@ -56,8 +61,6 @@ class InterpretXmppTest extends TestCase
 
         $response->assertStatus(200);
 
-        Bus::assertDispatched(InterpretXmpp::class, function ($job) {
-            dd($job->message);
-        });
+        Bus::assertDispatched(InterpretXmpp::class);
     }
 }
