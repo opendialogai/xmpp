@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace OpenDialogAi\Xmpp\ResponseEngine\Message\Xmpp;
 
 use OpenDialogAi\Core\Contracts\OpenDialogMessageContract;
-use OpenDialogAi\ResponseEngine\Message\Webchat\WebChatMessage;
 
 class XmppMessage implements OpenDialogMessageContract
 {
