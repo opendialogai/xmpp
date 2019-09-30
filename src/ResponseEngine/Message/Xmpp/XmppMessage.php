@@ -17,6 +17,8 @@ class XmppMessage implements OpenDialogMessageContract
     /** The message text. */
     private $text = null;
 
+    private $disable_text = false;
+
     private $time;
 
     private $date;
@@ -91,6 +93,26 @@ class XmppMessage implements OpenDialogMessageContract
     public function setAsEmpty(): void
     {
         $this->isEmpty = true;
+    }
+
+    /**
+     * Set disable_text property
+     *
+     * @param $disable_text
+     * @return $this
+     */
+    public function setDisableText($disable_text)
+    {
+        $this->disable_text = $disable_text;
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getDisableText()
+    {
+        return $this->disable_text;
     }
 
     /**

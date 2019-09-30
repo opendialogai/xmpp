@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0fb2d1b06abb619a34d36380f7326535",
+    "content-hash": "02a97b83d1ad1dfe144c7b25f84967a6",
     "packages": [
         {
             "name": "anahkiasen/underscore-php",
@@ -1210,12 +1210,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/opendialogai/core.git",
-                "reference": "f37c140a79a69bcb8dd1be68ff91185157c68dce"
+                "reference": "c070d9b8d32703849441008156ac864d0ac48202"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/opendialogai/core/zipball/f37c140a79a69bcb8dd1be68ff91185157c68dce",
-                "reference": "f37c140a79a69bcb8dd1be68ff91185157c68dce",
+                "url": "https://api.github.com/repos/opendialogai/core/zipball/c070d9b8d32703849441008156ac864d0ac48202",
+                "reference": "c070d9b8d32703849441008156ac864d0ac48202",
                 "shasum": ""
             },
             "require": {
@@ -1289,7 +1289,7 @@
                 }
             ],
             "description": "The OpenDialog core package",
-            "time": "2019-09-25T11:42:09+00:00"
+            "time": "2019-09-27T12:58:29+00:00"
         },
         {
             "name": "opendialogai/dgraph-docker",
@@ -6724,7 +6724,9 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": "^7.3.0"
+        "php": "^7.3.0",
+        "ext-dom": "*",
+        "ext-simplexml": "*"
     },
     "platform-dev": []
 }

@@ -8,9 +8,9 @@ use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Support\Facades\Log;
 use OpenDialogAi\ContextEngine\ContextParser;
 use OpenDialogAi\ContextEngine\Facades\ContextService;
+use OpenDialogAi\Core\Contracts\OpenDialogMessageContract;
 use OpenDialogAi\Core\Traits\HasName;
 use OpenDialogAi\ResponseEngine\Message\MessageFormatterInterface;
-use OpenDialogAi\ResponseEngine\Message\OpenDialogMessage;
 use OpenDialogAi\ResponseEngine\Message\ButtonMessage;
 use OpenDialogAi\ResponseEngine\Message\EmptyMessage;
 use OpenDialogAi\ResponseEngine\Message\FormMessage;
@@ -18,9 +18,9 @@ use OpenDialogAi\ResponseEngine\Message\ImageMessage;
 use OpenDialogAi\ResponseEngine\Message\ListMessage;
 use OpenDialogAi\ResponseEngine\Message\LongTextMessage;
 use OpenDialogAi\ResponseEngine\Message\RichMessage;
-use OpenDialogAi\ResponseEngine\Message\WebChatMessage;
 use OpenDialogAi\ResponseEngine\Service\ResponseEngineService;
 use OpenDialogAi\ResponseEngine\Service\ResponseEngineServiceInterface;
+use OpenDialogAi\Xmpp\ResponseEngine\Message\Xmpp\XmppMessage;
 use SimpleXMLElement;
 
 class XmppMessageFormatter implements MessageFormatterInterface
@@ -36,7 +36,7 @@ class XmppMessageFormatter implements MessageFormatterInterface
     protected $messages = [];
 
     /**
-     * WebChatMessageFormatter constructor.
+     * XmppMessageFormatter constructor.
      * @throws BindingResolutionException
      */
     public function __construct()
@@ -60,8 +60,8 @@ class XmppMessageFormatter implements MessageFormatterInterface
 
             if (isset($message[self::DISABLE_TEXT])) {
                 if ($message[self::DISABLE_TEXT] == '1' || $message[self::DISABLE_TEXT] == 'true') {
-                    foreach ($messages as $webChatMessage) {
-                        $webChatMessage->setDisableText(true);
+                    foreach ($messages as $xmppMessage) {
+                        $xmppMessage->setDisableText(true);
                     }
                 }
             }
@@ -88,9 +88,9 @@ class XmppMessageFormatter implements MessageFormatterInterface
         return $this->responseEngineService->fillAttributes($attributeValue);
     }
 
-    public function generateTextMessage(array $template): OpenDialogMessage
+    public function generateTextMessage(array $template): OpenDialogMessageContract
     {
-        $message = (new OpenDialogMessage())->setText($template[self::TEXT], [], true);
+        $message = (new XmppMessage())->setText($template[self::TEXT], [], true);
 
         return $message;
     }
@@ -134,7 +134,7 @@ class XmppMessageFormatter implements MessageFormatterInterface
      * Parse XML markup and convert to the appropriate Message class.
      *
      * @param SimpleXMLElement $item
-     * @return WebChatMessage
+     * @return XmppMessage
      */
     private function parseMessage(SimpleXMLElement $item)
     {
