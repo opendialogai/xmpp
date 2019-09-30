@@ -45,7 +45,7 @@ class XmppDTO implements DataTransferObjectInterface
         return $this;
     }
 
-    public function getNotification():?string
+    public function getNotification(): ?string
     {
         return $this->notification;
     }
@@ -57,7 +57,7 @@ class XmppDTO implements DataTransferObjectInterface
         return $this;
     }
 
-    public function getFrom():?string
+    public function getFrom(): ?string
     {
         return $this->from;
     }
@@ -69,7 +69,7 @@ class XmppDTO implements DataTransferObjectInterface
         return $this;
     }
 
-    public function getTo():?string
+    public function getTo(): ?string
     {
         return $this->to;
     }
@@ -81,7 +81,7 @@ class XmppDTO implements DataTransferObjectInterface
         return $this;
     }
 
-    public function getLanguage():?string
+    public function getLanguage(): ?string
     {
         return $this->lang;
     }
@@ -93,7 +93,7 @@ class XmppDTO implements DataTransferObjectInterface
         return $this;
     }
 
-    public function getContentType():?string
+    public function getContentType(): ?string
     {
         return $this->type;
     }
@@ -105,7 +105,7 @@ class XmppDTO implements DataTransferObjectInterface
         return $this;
     }
 
-    public function getContentData():?string
+    public function getContentData(): ?string
     {
         return $this->data;
     }

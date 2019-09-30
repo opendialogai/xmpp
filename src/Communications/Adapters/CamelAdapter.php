@@ -7,7 +7,6 @@ namespace OpenDialogAi\Xmpp\Communications\Adapters;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Psr7\Request;
-use GuzzleHttp\Psr7\Response;
 use Illuminate\Support\Facades\Log;
 use OpenDialogAi\Xmpp\Communications\CommunicationInterface;
 
@@ -50,7 +49,7 @@ class CamelAdapter implements CommunicationInterface
         return $this;
     }
 
-    public function getUrl():?string
+    public function getUrl(): ?string
     {
         return $this->url;
     }
@@ -62,7 +61,7 @@ class CamelAdapter implements CommunicationInterface
         return $this;
     }
 
-    public function getPort():?int
+    public function getPort(): ?int
     {
         return $this->port;
     }
@@ -74,7 +73,7 @@ class CamelAdapter implements CommunicationInterface
         return $this;
     }
 
-    public function getPayload():?array
+    public function getPayload(): ?array
     {
         return $this->payload;
     }
@@ -86,7 +85,7 @@ class CamelAdapter implements CommunicationInterface
         return $this;
     }
 
-    public function getProtocol():?string
+    public function getProtocol(): ?string
     {
         return $this->protocol;
     }
@@ -98,7 +97,7 @@ class CamelAdapter implements CommunicationInterface
         return $this;
     }
 
-    public function getEndpoint():?string
+    public function getEndpoint(): ?string
     {
         return $this->endpoint;
     }
@@ -108,7 +107,7 @@ class CamelAdapter implements CommunicationInterface
         $this->client = $client;
     }
 
-    public function getClient():?Client
+    public function getClient(): ?Client
     {
         return $this->client;
     }

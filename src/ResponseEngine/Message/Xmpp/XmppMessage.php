@@ -8,9 +8,9 @@ use OpenDialogAi\Core\Contracts\OpenDialogMessageContract;
 
 class XmppMessage implements OpenDialogMessageContract
 {
-    const TIME = 'time';
+    public const TIME = 'time';
 
-    const DATE = 'date';
+    public const DATE = 'date';
 
     protected $messageType = 'text';
 
@@ -53,7 +53,7 @@ class XmppMessage implements OpenDialogMessageContract
     /**
      * @return null|string
      */
-    public function getText():?string
+    public function getText(): ?string
     {
         return $this->text;
     }
@@ -118,7 +118,7 @@ class XmppMessage implements OpenDialogMessageContract
     /**
      * @return array
      */
-    public function getData():?array
+    public function getData(): ?array
     {
         return [
             'text' => $this->getText(),
