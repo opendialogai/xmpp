@@ -15,8 +15,6 @@
     ],
     "require": {
         "php": "^7.3.0",
-        "ext-dom": "*",
-        "ext-simplexml": "*",
         "opendialogai/core": "dev-feature/response-engine"
     },
     "require-dev": {
