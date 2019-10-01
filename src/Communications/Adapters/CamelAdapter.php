@@ -8,9 +8,10 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Psr7\Request;
 use Illuminate\Support\Facades\Log;
-use OpenDialogAi\Xmpp\Communications\CommunicationInterface;
+use OpenDialogAi\Xmpp\Communications\AdapterInterface;
+use Psr\Http\Message\ResponseInterface;
 
-class CamelAdapter implements CommunicationInterface
+class CamelAdapter implements AdapterInterface
 {
     /**
      * @var string
@@ -112,7 +113,10 @@ class CamelAdapter implements CommunicationInterface
         return $this->client;
     }
 
-    public function send()
+    /**
+     * @return ResponseInterface|null
+     */
+    public function send(): ?ResponseInterface
     {
         $request = new Request(
             'POST',
@@ -124,8 +128,8 @@ class CamelAdapter implements CommunicationInterface
             $response = $this->client->send($request);
             return $response;
         } catch (GuzzleException $e) {
-            // @todo return gracefully
             Log::warning($e->getMessage());
+            return null;
         }
     }
 

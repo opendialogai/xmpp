@@ -5,13 +5,9 @@ declare(strict_types=1);
 namespace OpenDialogAi\Xmpp;
 
 use Illuminate\Support\ServiceProvider;
-use OpenDialogAi\ConversationEngine\ConversationEngineInterface;
-use OpenDialogAi\ConversationLog\Service\ConversationLogService;
-use OpenDialogAi\Core\Controllers\OpenDialogController;
-use OpenDialogAi\SensorEngine\SensorInterface;
-use OpenDialogAi\SensorEngine\Service\SensorService;
-use OpenDialogAi\ResponseEngine\Service\ResponseEngineService;
-use OpenDialogAi\ResponseEngine\Service\ResponseEngineServiceInterface;
+use OpenDialogAi\Xmpp\Communications\Adapters\CamelAdapter;
+use OpenDialogAi\Xmpp\Communications\CommunicationServiceInterface;
+use OpenDialogAi\Xmpp\Communications\Service\CommunicationService;
 
 class XmppServiceProvider extends ServiceProvider
 {
@@ -47,26 +43,17 @@ class XmppServiceProvider extends ServiceProvider
 
         $this->loadRoutesFrom(__DIR__ . '/../routes/web.php');
 
-        $this->app->bind(SensorInterface::class, function () {
-            $sensorEngine = new SensorService();
-            $sensorEngine->registerAvailableSensors();
-            return $sensorEngine;
-        });
+        $this->app->singleton(CommunicationServiceInterface::class, function () {
+            $service = new CommunicationService(new CamelAdapter());
 
-        $this->app->bind(ResponseEngineServiceInterface::class, function () {
-            $service = new ResponseEngineService();
-            $service->registerAvailableFormatters();
+            $service->build([
+                'url' => config('opendialog.xmpp.communications.camel.url'),
+                'port' => config('opendialog.xmpp.communications.camel.port'),
+                'protocol' => config('opendialog.xmpp.communications.camel.protocol'),
+                'endpoint' => config('opendialog.xmpp.communications.camel.endpoint'),
+            ]);
+
             return $service;
-        });
-
-        $this->app->singleton(OpenDialogController::class, function () {
-            $odController = new OpenDialogController();
-
-            $odController->setConversationLogService($this->app->make(ConversationLogService::class));
-            $odController->setConversationEngine($this->app->make(ConversationEngineInterface::class));
-            $odController->setResponseEngine($this->app->make(ResponseEngineServiceInterface::class));
-
-            return $odController;
         });
     }
 }

@@ -6,7 +6,7 @@ namespace OpenDialogAi\Xmpp\Communications;
 
 use GuzzleHttp\Client;
 
-interface CommunicationInterface
+interface AdapterInterface
 {
     public function send();
 

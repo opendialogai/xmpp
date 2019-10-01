@@ -4,14 +4,16 @@ declare(strict_types=1);
 
 namespace OpenDialogAi\Xmpp\Tests\ResponseEngine\Jobs;
 
-use Illuminate\Http\Request;
+use GuzzleHttp\Psr7\Response;
 use Illuminate\Support\Facades\Bus;
 use Illuminate\Support\Facades\Queue;
+use Mockery\MockInterface;
 use OpenDialogAi\Core\Attribute\StringAttribute;
 use OpenDialogAi\Core\Graph\DGraph\DGraphClient;
-use OpenDialogAi\Xmpp\SensorEngine\Sensors\XmppSensor;
-use OpenDialogAi\Xmpp\Tests\TestCase;
+use OpenDialogAi\Xmpp\Communications\Adapters\CamelAdapter;
+use OpenDialogAi\Xmpp\Communications\CommunicationServiceInterface;
 use OpenDialogAi\Xmpp\ResponseEngine\Jobs\InterpretXmpp;
+use OpenDialogAi\Xmpp\Tests\TestCase;
 use OpenDialogAi\Xmpp\Utterances\Xmpp\TextUtterance;
 
 class InterpretXmppTest extends TestCase
@@ -84,5 +86,23 @@ class InterpretXmppTest extends TestCase
         Queue::assertPushed(InterpretXmpp::class, function ($job) {
             return $job->utterance instanceof TextUtterance;
         });
+    }
+
+    public function testSending()
+    {
+        $adapterMock = $this->spy(CamelAdapter::class, function (MockInterface $mock) {
+            $mock->shouldReceive('setPayload')->once();
+        });
+
+        $this->mock(CommunicationServiceInterface::class, function (MockInterface $mock) use ($adapterMock) {
+            $mock->shouldReceive('getAdapter')->once()->andReturn($adapterMock);
+            $mock->shouldReceive('communicate')->once()->andReturn(new Response());
+        });
+
+        $this->json(
+            'post',
+            '/incoming/xmpp',
+            $data = $this->getData()
+        );
     }
 }

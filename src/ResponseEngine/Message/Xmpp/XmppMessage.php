@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace OpenDialogAi\Xmpp\ResponseEngine\Message\Xmpp;
 
-use OpenDialogAi\Core\Contracts\OpenDialogMessageContract;
+use OpenDialogAi\ResponseEngine\Message\OpenDialogMessage;
 
-class XmppMessage implements OpenDialogMessageContract
+class XmppMessage implements OpenDialogMessage
 {
     public const TIME = 'time';
 

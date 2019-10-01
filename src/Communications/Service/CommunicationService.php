@@ -4,21 +4,23 @@ declare(strict_types=1);
 
 namespace OpenDialogAi\Xmpp\Communications\Service;
 
-use OpenDialogAi\Xmpp\Communications\CommunicationInterface;
+use OpenDialogAi\Xmpp\Communications\AdapterInterface;
+use OpenDialogAi\Xmpp\Communications\CommunicationServiceInterface;
+use Psr\Http\Message\ResponseInterface;
 
-class CommunicationService
+class CommunicationService implements CommunicationServiceInterface
 {
     /**
-     * @var CommunicationInterface
+     * @var AdapterInterface
      */
     protected $adapter;
 
-    public function __construct(CommunicationInterface $adapter)
+    public function __construct(AdapterInterface $adapter)
     {
         $this->adapter = $adapter;
     }
 
-    public function getAdapter(): CommunicationInterface
+    public function getAdapter(): AdapterInterface
     {
         return $this->adapter;
     }
@@ -29,13 +31,15 @@ class CommunicationService
             ->setUrl($data['url'])
             ->setPort($data['port'])
             ->setProtocol($data['protocol'])
-            ->setEndpoint($data['endpoint'])
-            ->setPayload($data['payload']);
+            ->setEndpoint($data['endpoint']);
 
         return $this;
     }
 
-    public function communicate()
+    /**
+     * @return ResponseInterface|null
+     */
+    public function communicate(): ?ResponseInterface
     {
         return $this->adapter->send();
     }

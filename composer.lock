@@ -1210,12 +1210,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/opendialogai/core.git",
-                "reference": "c070d9b8d32703849441008156ac864d0ac48202"
+                "reference": "ad7f95e42ab88b53a8a3f080351396e76bffe4b1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/opendialogai/core/zipball/c070d9b8d32703849441008156ac864d0ac48202",
-                "reference": "c070d9b8d32703849441008156ac864d0ac48202",
+                "url": "https://api.github.com/repos/opendialogai/core/zipball/ad7f95e42ab88b53a8a3f080351396e76bffe4b1",
+                "reference": "ad7f95e42ab88b53a8a3f080351396e76bffe4b1",
                 "shasum": ""
             },
             "require": {
@@ -1289,7 +1289,7 @@
                 }
             ],
             "description": "The OpenDialog core package",
-            "time": "2019-09-27T12:58:29+00:00"
+            "time": "2019-10-01T09:37:35+00:00"
         },
         {
             "name": "opendialogai/dgraph-docker",
@@ -4484,16 +4484,16 @@
         },
         {
             "name": "mockery/mockery",
-            "version": "1.2.3",
+            "version": "1.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mockery/mockery.git",
-                "reference": "4eff936d83eb809bde2c57a3cea0ee9643769031"
+                "reference": "b3453f75fd23d9fd41685f2148f4abeacabc6405"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mockery/mockery/zipball/4eff936d83eb809bde2c57a3cea0ee9643769031",
-                "reference": "4eff936d83eb809bde2c57a3cea0ee9643769031",
+                "url": "https://api.github.com/repos/mockery/mockery/zipball/b3453f75fd23d9fd41685f2148f4abeacabc6405",
+                "reference": "b3453f75fd23d9fd41685f2148f4abeacabc6405",
                 "shasum": ""
             },
             "require": {
@@ -4507,7 +4507,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.0.x-dev"
+                    "dev-master": "1.2.x-dev"
                 }
             },
             "autoload": {
@@ -4545,7 +4545,7 @@
                 "test double",
                 "testing"
             ],
-            "time": "2019-08-07T15:01:07+00:00"
+            "time": "2019-09-30T08:30:27+00:00"
         },
         {
             "name": "myclabs/deep-copy",
