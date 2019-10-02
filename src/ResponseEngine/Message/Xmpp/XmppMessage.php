@@ -133,7 +133,7 @@ class XmppMessage implements OpenDialogMessage
             return false;
         }
         return [
-            'author' => 'them',
+            'author' => config('opendialog.xmpp.bot_address'),
             'type' => $this->getMessageType(),
             'data' => $this->getData()
         ];

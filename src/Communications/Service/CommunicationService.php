@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace OpenDialogAi\Xmpp\Communications\Service;
 
+use GuzzleHttp\Client;
 use OpenDialogAi\Xmpp\Communications\AdapterInterface;
 use OpenDialogAi\Xmpp\Communications\CommunicationServiceInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -31,7 +32,8 @@ class CommunicationService implements CommunicationServiceInterface
             ->setUrl($data['url'])
             ->setPort($data['port'])
             ->setProtocol($data['protocol'])
-            ->setEndpoint($data['endpoint']);
+            ->setEndpoint($data['endpoint'])
+            ->setClient(new Client());
 
         return $this;
     }

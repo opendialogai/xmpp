@@ -121,7 +121,8 @@ class CamelAdapter implements AdapterInterface
         $request = new Request(
             'POST',
             $this->buildUri(),
-            $this->payload
+            [],
+            json_encode($this->payload)
         );
 
         try {
@@ -135,6 +136,6 @@ class CamelAdapter implements AdapterInterface
 
     public function buildUri(): string
     {
-        return "{$this->getProtocol()}://{$this->getUrl()}::{$this->getPort()}/{$this->getEndpoint()}";
+        return "{$this->getProtocol()}://{$this->getUrl()}:{$this->getPort()}/{$this->getEndpoint()}";
     }
 }
