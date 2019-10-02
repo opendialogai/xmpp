@@ -26,14 +26,18 @@ class CommunicationService implements CommunicationServiceInterface
         return $this->adapter;
     }
 
-    public function build(array $data): self
+    public function build(array $data, Client $client = null): self
     {
+        if (is_null($client)) {
+            $client = new Client();
+        }
+
         $this->adapter
             ->setUrl($data['url'])
             ->setPort($data['port'])
             ->setProtocol($data['protocol'])
             ->setEndpoint($data['endpoint'])
-            ->setClient(new Client());
+            ->setClient($client);
 
         return $this;
     }

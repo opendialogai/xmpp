@@ -42,13 +42,10 @@ class CommunicationServiceTest extends TestCase
             'url' => 'www.example.com',
             'port' => 8080,
             'endpoint' => 'api/test',
-            'protocol' => 'https',
-            'payload' => [
-                'foo' => 'bar'
-            ]
+            'protocol' => 'https'
         ];
 
-        $this->service->build($data);
+        $this->service->build($data, $this->client);
 
         return $data;
     }
@@ -61,7 +58,7 @@ class CommunicationServiceTest extends TestCase
 
         $adapter = $this->service->getAdapter();
         $url = sprintf(
-            "%s://%s::%s/%s",
+            "%s://%s:%s/%s",
             $data['protocol'],
             $data['url'],
             $data['port'],

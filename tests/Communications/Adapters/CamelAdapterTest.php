@@ -101,7 +101,7 @@ class CamelAdapterTest extends TestCase
         $this->assertEquals($data['payload'], $this->adapter->getPayload());
 
         $url = sprintf(
-            "%s://%s::%s/%s",
+            "%s://%s:%s/%s",
             $data['protocol'],
             $data['url'],
             $data['port'],
