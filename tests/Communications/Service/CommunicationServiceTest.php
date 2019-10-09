@@ -9,7 +9,7 @@ use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
 use OpenDialogAi\Xmpp\Communications\Adapters\CamelAdapter;
-use OpenDialogAi\Xmpp\Communications\CommunicationInterface;
+use OpenDialogAi\Xmpp\Communications\AdapterInterface;
 use OpenDialogAi\Xmpp\Communications\Service\CommunicationService;
 use OpenDialogAi\Xmpp\Tests\TestCase;
 
@@ -42,13 +42,10 @@ class CommunicationServiceTest extends TestCase
             'url' => 'www.example.com',
             'port' => 8080,
             'endpoint' => 'api/test',
-            'protocol' => 'https',
-            'payload' => [
-                'foo' => 'bar'
-            ]
+            'protocol' => 'https'
         ];
 
-        $this->service->build($data);
+        $this->service->build($data, $this->client);
 
         return $data;
     }
@@ -57,11 +54,11 @@ class CommunicationServiceTest extends TestCase
     {
         $data = $this->buildServiceAdapter();
         $this->assertInstanceOf(CamelAdapter::class, $this->service->getAdapter());
-        $this->assertInstanceOf(CommunicationInterface::class, $this->service->getAdapter());
+        $this->assertInstanceOf(AdapterInterface::class, $this->service->getAdapter());
 
         $adapter = $this->service->getAdapter();
         $url = sprintf(
-            "%s://%s::%s/%s",
+            "%s://%s:%s/%s",
             $data['protocol'],
             $data['url'],
             $data['port'],
@@ -73,8 +70,9 @@ class CommunicationServiceTest extends TestCase
 
     public function testServiceCanCommunicate()
     {
-        $data = $this->buildServiceAdapter();
+        $this->buildServiceAdapter();
 
+        $this->service->getAdapter()->setPayload([]);
         $response = $this->service->communicate();
 
         $this->assertEquals(201, $response->getStatusCode());

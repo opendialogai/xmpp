@@ -15,14 +15,9 @@ use OpenDialogAi\ResponseEngine\ResponseEngineServiceProvider;
 use OpenDialogAi\SensorEngine\SensorEngineServiceProvider;
 use OpenDialogAi\Xmpp\XmppServiceProvider;
 
-class TestCase extends \Orchestra\Testbench\TestCase
+class TestCase extends \OpenDialogAi\Core\Tests\TestCase
 {
-    /**
-     * @var bool Whether DGraph has been initialised or not
-     */
-    private $dgraphInitialised = false;
-
-    protected function setUp(): void
+    protected function setUp() :void
     {
         parent::setUp();
 
@@ -34,38 +29,11 @@ class TestCase extends \Orchestra\Testbench\TestCase
         } catch (\Exception $e) {
             //
         }
-
-        if (!defined('LARAVEL_START')) {
-            define('LARAVEL_START', microtime(true));
-        }
-
-        $this->artisan('migrate', [
-            '--database' => 'testbench'
-        ]);
     }
 
     /**
-     * Sets a config value to the app
-     *
-     * @param $configName
-     * @param $config
+     * Overrides core package providers
      */
-    public function setConfigValue($configName, $config)
-    {
-        $this->app['config']->set($configName, $config);
-    }
-
-    protected function getEnvironmentSetUp($app)
-    {
-        # Setup default database to use sqlite :memory:
-        $app['config']->set('database.default', 'testbench');
-        $app['config']->set('database.connections.testbench', [
-            'driver'   => 'sqlite',
-            'database' => ':memory:',
-            'prefix'   => '',
-        ]);
-    }
-
     public function getPackageProviders($app)
     {
         return [

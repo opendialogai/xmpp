@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
+use OpenDialogAi\Core\Controllers\OpenDialogController;
+use OpenDialogAi\Xmpp\Communications\CommunicationServiceInterface;
+use OpenDialogAi\Xmpp\ResponseEngine\Message\Xmpp\XmppMessages;
 use OpenDialogAi\Xmpp\Utterances\Xmpp\TextUtterance;
 
 class InterpretXmpp implements ShouldQueue
@@ -20,7 +23,12 @@ class InterpretXmpp implements ShouldQueue
     /**
      * @var TextUtterance
      */
-    protected $utterance;
+    public $utterance;
+
+    /**
+     * @var \OpenDialogAi\ResponseEngine\Message\OpenDialogMessages
+     */
+    public $message;
 
     /**
      * Create a new job instance.
@@ -33,8 +41,20 @@ class InterpretXmpp implements ShouldQueue
         $this->utterance = $utterance;
     }
 
-    public function handle()
+    public function handle(OpenDialogController $odController, CommunicationServiceInterface $communicationService)
     {
-        Log::debug('Interpreting XMPP request.');
+        Log::debug('XMPP Job is being handled.');
+
+        /** @var XmppMessages $messageWrapper */
+        $messageWrapper = $odController->runConversation($this->utterance);
+
+        Log::debug(sprintf('Sending response: %s', json_encode($messageWrapper->getMessageToPost())));
+
+        $communicationService->getAdapter()->setPayload($messageWrapper->getMessageToPost());
+        $response = $communicationService->communicate();
+
+        if (!is_null($response)) {
+            Log::debug('Response sent successfully.');
+        }
     }
 }

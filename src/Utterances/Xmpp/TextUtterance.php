@@ -8,5 +8,5 @@ use OpenDialogAi\Core\Utterances\TextUtterance as BaseTextUtterance;
 
 class TextUtterance extends BaseTextUtterance
 {
-    const PLATFORM = 'xmpp';
+    public const PLATFORM = 'xmpp';
 }

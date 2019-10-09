@@ -6,7 +6,6 @@ namespace OpenDialogAi\Xmpp\SensorEngine\Sensors;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Str;
 use OpenDialogAi\Core\Traits\HasName;
 use OpenDialogAi\Core\Utterances\Exceptions\FieldNotSupported;
 use OpenDialogAi\Core\Utterances\Exceptions\UtteranceUnknownMessageType;
@@ -40,7 +39,7 @@ class XmppSensor extends BaseSensor
                 $utterance = new TextUtterance();
                 $utterance->setData($content['data']);
                 $utterance->setText($content['data']['text']);
-                $utterance->setUserId($userId = Str::random());
+                $utterance->setUserId($userId = $request['from']);
 
                 $utterance->setUser(
                     $this->createUser(

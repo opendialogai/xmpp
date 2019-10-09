@@ -829,16 +829,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v6.0.3",
+            "version": "v6.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "56789e9dec750e0fbe8e9e6ae90a01a4e6887902"
+                "reference": "a365bea7ff0dea9a50f5904be9e41656def9af4b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/56789e9dec750e0fbe8e9e6ae90a01a4e6887902",
-                "reference": "56789e9dec750e0fbe8e9e6ae90a01a4e6887902",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/a365bea7ff0dea9a50f5904be9e41656def9af4b",
+                "reference": "a365bea7ff0dea9a50f5904be9e41656def9af4b",
                 "shasum": ""
             },
             "require": {
@@ -934,7 +934,7 @@
                 "league/flysystem-sftp": "Required to use the Flysystem SFTP driver (^1.0).",
                 "moontoast/math": "Required to use ordered UUIDs (^1.1).",
                 "pda/pheanstalk": "Required to use the beanstalk queue driver (^4.0).",
-                "pusher/pusher-php-server": "Required to use the Pusher broadcast driver (^3.0).",
+                "pusher/pusher-php-server": "Required to use the Pusher broadcast driver (^4.0).",
                 "symfony/cache": "Required to PSR-6 cache bridge (^4.3.4).",
                 "symfony/psr-http-message-bridge": "Required to use PSR-7 bridging features (^1.2).",
                 "wildbit/swiftmailer-postmark": "Required to use Postmark mail driver (^3.0)."
@@ -970,7 +970,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2019-09-10T18:46:24+00:00"
+            "time": "2019-10-01T13:55:56+00:00"
         },
         {
             "name": "league/flysystem",
@@ -1210,12 +1210,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/opendialogai/core.git",
-                "reference": "7943ca0d9c6cf77226468b2909549df38ea77a05"
+                "reference": "ad7f95e42ab88b53a8a3f080351396e76bffe4b1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/opendialogai/core/zipball/7943ca0d9c6cf77226468b2909549df38ea77a05",
-                "reference": "7943ca0d9c6cf77226468b2909549df38ea77a05",
+                "url": "https://api.github.com/repos/opendialogai/core/zipball/ad7f95e42ab88b53a8a3f080351396e76bffe4b1",
+                "reference": "ad7f95e42ab88b53a8a3f080351396e76bffe4b1",
                 "shasum": ""
             },
             "require": {
@@ -1270,7 +1270,8 @@
                     "OpenDialogAi\\ResponseEngine\\": "src/ResponseEngine",
                     "OpenDialogAi\\InterpreterEngine\\": "src/InterpreterEngine",
                     "OpenDialogAi\\SensorEngine\\": "src/SensorEngine",
-                    "OpenDialogAi\\Core\\Database\\": "database/"
+                    "OpenDialogAi\\Core\\Database\\": "database/",
+                    "OpenDialogAi\\Core\\Tests\\": "tests/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -1288,7 +1289,7 @@
                 }
             ],
             "description": "The OpenDialog core package",
-            "time": "2019-09-18T13:12:29+00:00"
+            "time": "2019-10-01T09:37:35+00:00"
         },
         {
             "name": "opendialogai/dgraph-docker",
@@ -4483,16 +4484,16 @@
         },
         {
             "name": "mockery/mockery",
-            "version": "1.2.3",
+            "version": "1.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mockery/mockery.git",
-                "reference": "4eff936d83eb809bde2c57a3cea0ee9643769031"
+                "reference": "b3453f75fd23d9fd41685f2148f4abeacabc6405"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mockery/mockery/zipball/4eff936d83eb809bde2c57a3cea0ee9643769031",
-                "reference": "4eff936d83eb809bde2c57a3cea0ee9643769031",
+                "url": "https://api.github.com/repos/mockery/mockery/zipball/b3453f75fd23d9fd41685f2148f4abeacabc6405",
+                "reference": "b3453f75fd23d9fd41685f2148f4abeacabc6405",
                 "shasum": ""
             },
             "require": {
@@ -4506,7 +4507,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.0.x-dev"
+                    "dev-master": "1.2.x-dev"
                 }
             },
             "autoload": {
@@ -4544,7 +4545,7 @@
                 "test double",
                 "testing"
             ],
-            "time": "2019-08-07T15:01:07+00:00"
+            "time": "2019-09-30T08:30:27+00:00"
         },
         {
             "name": "myclabs/deep-copy",
@@ -4596,24 +4597,24 @@
         },
         {
             "name": "orchestra/testbench",
-            "version": "v4.0.0",
+            "version": "v4.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/orchestral/testbench.git",
-                "reference": "bde8b826bde3bd39a2a87e6cd328501e19c60cc9"
+                "reference": "a10dbc9dba64c6fb98b5169f4daf476691596968"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/orchestral/testbench/zipball/bde8b826bde3bd39a2a87e6cd328501e19c60cc9",
-                "reference": "bde8b826bde3bd39a2a87e6cd328501e19c60cc9",
+                "url": "https://api.github.com/repos/orchestral/testbench/zipball/a10dbc9dba64c6fb98b5169f4daf476691596968",
+                "reference": "a10dbc9dba64c6fb98b5169f4daf476691596968",
                 "shasum": ""
             },
             "require": {
                 "laravel/framework": "^6.0",
-                "mockery/mockery": "^1.0",
+                "mockery/mockery": "^1.2.3",
                 "orchestra/testbench-core": "^4.0",
                 "php": ">=7.2",
-                "phpunit/phpunit": "^8.0"
+                "phpunit/phpunit": "^8.3"
             },
             "type": "library",
             "extra": {
@@ -4642,7 +4643,7 @@
                 "orchestral",
                 "testing"
             ],
-            "time": "2019-09-03T20:02:19+00:00"
+            "time": "2019-09-24T06:46:06+00:00"
         },
         {
             "name": "orchestra/testbench-core",
@@ -5014,16 +5015,16 @@
         },
         {
             "name": "phpro/grumphp",
-            "version": "v0.16.0",
+            "version": "v0.16.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpro/grumphp.git",
-                "reference": "56cb5103177cc61046cf1cf92913b5b4258d9cb7"
+                "reference": "079cb90c740d8a83a769b6484d74645eedb7f74c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpro/grumphp/zipball/56cb5103177cc61046cf1cf92913b5b4258d9cb7",
-                "reference": "56cb5103177cc61046cf1cf92913b5b4258d9cb7",
+                "url": "https://api.github.com/repos/phpro/grumphp/zipball/079cb90c740d8a83a769b6484d74645eedb7f74c",
+                "reference": "079cb90c740d8a83a769b6484d74645eedb7f74c",
                 "shasum": ""
             },
             "require": {
@@ -5115,7 +5116,7 @@
                 }
             ],
             "description": "A composer plugin that enables source code quality checks.",
-            "time": "2019-09-09T11:22:39+00:00"
+            "time": "2019-09-22T07:37:49+00:00"
         },
         {
             "name": "phpspec/prophecy",
@@ -6225,16 +6226,16 @@
         },
         {
             "name": "squizlabs/php_codesniffer",
-            "version": "3.4.2",
+            "version": "3.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/squizlabs/PHP_CodeSniffer.git",
-                "reference": "b8a7362af1cc1aadb5bd36c3defc4dda2cf5f0a8"
+                "reference": "0afebf16a2e7f1e434920fa976253576151effe9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/b8a7362af1cc1aadb5bd36c3defc4dda2cf5f0a8",
-                "reference": "b8a7362af1cc1aadb5bd36c3defc4dda2cf5f0a8",
+                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/0afebf16a2e7f1e434920fa976253576151effe9",
+                "reference": "0afebf16a2e7f1e434920fa976253576151effe9",
                 "shasum": ""
             },
             "require": {
@@ -6272,7 +6273,7 @@
                 "phpcs",
                 "standards"
             ],
-            "time": "2019-04-10T23:49:02+00:00"
+            "time": "2019-09-26T23:12:26+00:00"
         },
         {
             "name": "symfony/config",
