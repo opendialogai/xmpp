@@ -4,19 +4,20 @@ declare(strict_types=1);
 
 namespace OpenDialogAi\Xmpp\ResponseEngine\Message\Xmpp;
 
-use OpenDialogAi\Core\Contracts\OpenDialogMessageContract;
-use OpenDialogAi\ResponseEngine\Message\Webchat\WebChatMessage;
+use OpenDialogAi\ResponseEngine\Message\OpenDialogMessage;
 
-class XmppMessage implements OpenDialogMessageContract
+class XmppMessage implements OpenDialogMessage
 {
-    const TIME = 'time';
+    public const TIME = 'time';
 
-    const DATE = 'date';
+    public const DATE = 'date';
 
     protected $messageType = 'text';
 
     /** The message text. */
     private $text = null;
+
+    private $disable_text = false;
 
     private $time;
 
@@ -52,7 +53,7 @@ class XmppMessage implements OpenDialogMessageContract
     /**
      * @return null|string
      */
-    public function getText():?string
+    public function getText(): ?string
     {
         return $this->text;
     }
@@ -95,9 +96,29 @@ class XmppMessage implements OpenDialogMessageContract
     }
 
     /**
+     * Set disable_text property
+     *
+     * @param $disable_text
+     * @return $this
+     */
+    public function setDisableText($disable_text)
+    {
+        $this->disable_text = $disable_text;
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getDisableText()
+    {
+        return $this->disable_text;
+    }
+
+    /**
      * @return array
      */
-    public function getData():?array
+    public function getData(): ?array
     {
         return [
             'text' => $this->getText(),
@@ -112,7 +133,7 @@ class XmppMessage implements OpenDialogMessageContract
             return false;
         }
         return [
-            'author' => 'them',
+            'author' => config('opendialog.xmpp.bot_address'),
             'type' => $this->getMessageType(),
             'data' => $this->getData()
         ];

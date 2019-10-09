@@ -4,10 +4,25 @@ declare(strict_types=1);
 
 namespace OpenDialogAi\Xmpp\Tests\SensorEngine\Http\Requests;
 
+use OpenDialogAi\Core\Graph\DGraph\DGraphClient;
 use OpenDialogAi\Xmpp\Tests\TestCase;
 
 class IncomingXmppMessageTest extends TestCase
 {
+    protected $dGraph;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->publishConversation($this->conversation1());
+        $this->publishConversation($this->conversation2());
+        $this->publishConversation($this->conversation3());
+        $this->publishConversation($this->conversation4());
+
+        $this->dGraph = app()->make(DGraphClient::class);
+    }
+
     protected function getData()
     {
         return [

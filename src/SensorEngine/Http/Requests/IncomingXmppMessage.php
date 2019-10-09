@@ -35,12 +35,12 @@ class IncomingXmppMessage extends FormRequest implements IncomingMessageInterfac
             'from' => [
                 'required',
                 'string',
-                'email:rfc,dns,filter'
+                'email:rfc,filter'
             ],
             'to' => [
                 'required',
                 'string',
-                'email:rfc,dns,filter'
+                'email:rfc,filter'
             ],
             'lang' => [
                 'required',

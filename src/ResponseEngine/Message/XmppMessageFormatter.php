@@ -4,34 +4,42 @@ declare(strict_types=1);
 
 namespace OpenDialogAi\Xmpp\ResponseEngine\Message;
 
+use Exception;
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Support\Facades\Log;
 use OpenDialogAi\ContextEngine\ContextParser;
 use OpenDialogAi\ContextEngine\Facades\ContextService;
+use OpenDialogAi\Core\Traits\HasName;
 use OpenDialogAi\ResponseEngine\Message\MessageFormatterInterface;
-use OpenDialogAi\ResponseEngine\Message\OpenDialogMessage;
 use OpenDialogAi\ResponseEngine\Message\ButtonMessage;
 use OpenDialogAi\ResponseEngine\Message\EmptyMessage;
 use OpenDialogAi\ResponseEngine\Message\FormMessage;
 use OpenDialogAi\ResponseEngine\Message\ImageMessage;
 use OpenDialogAi\ResponseEngine\Message\ListMessage;
 use OpenDialogAi\ResponseEngine\Message\LongTextMessage;
+use OpenDialogAi\ResponseEngine\Message\OpenDialogMessage;
+use OpenDialogAi\ResponseEngine\Message\OpenDialogMessages;
 use OpenDialogAi\ResponseEngine\Message\RichMessage;
-use OpenDialogAi\ResponseEngine\Message\WebChatMessage;
 use OpenDialogAi\ResponseEngine\Service\ResponseEngineService;
 use OpenDialogAi\ResponseEngine\Service\ResponseEngineServiceInterface;
+use OpenDialogAi\Xmpp\ResponseEngine\Message\Xmpp\XmppMessage;
+use OpenDialogAi\Xmpp\ResponseEngine\Message\Xmpp\XmppMessages;
 use SimpleXMLElement;
 
 class XmppMessageFormatter implements MessageFormatterInterface
 {
+    use HasName;
+
     /** @var ResponseEngineService */
     private $responseEngineService;
+
+    protected static $name = 'formatter.core.xmpp';
 
     /** @var array  */
     protected $messages = [];
 
     /**
-     * WebChatMessageFormatter constructor.
+     * XmppMessageFormatter constructor.
      * @throws BindingResolutionException
      */
     public function __construct()
@@ -39,7 +47,7 @@ class XmppMessageFormatter implements MessageFormatterInterface
         $this->responseEngineService = app()->make(ResponseEngineServiceInterface::class);
     }
 
-    public function getMessages(string $markup): array
+    public function getMessages(string $markup): OpenDialogMessages
     {
         $messages = [];
         try {
@@ -55,17 +63,22 @@ class XmppMessageFormatter implements MessageFormatterInterface
 
             if (isset($message[self::DISABLE_TEXT])) {
                 if ($message[self::DISABLE_TEXT] == '1' || $message[self::DISABLE_TEXT] == 'true') {
-                    foreach ($messages as $webChatMessage) {
-                        $webChatMessage->setDisableText(true);
+                    foreach ($messages as $xmppMessage) {
+                        $xmppMessage->setDisableText(true);
                     }
                 }
             }
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             Log::warning(sprintf('Message Builder error: %s', $e->getMessage()));
-            return [];
+            return new XmppMessages();
         }
 
-        return $messages;
+        $messageWrapper = new XmppMessages();
+        foreach ($messages as $message) {
+            $messageWrapper->addMessage($message);
+        }
+
+        return $messageWrapper;
     }
 
     /**
@@ -85,7 +98,7 @@ class XmppMessageFormatter implements MessageFormatterInterface
 
     public function generateTextMessage(array $template): OpenDialogMessage
     {
-        $message = (new OpenDialogMessage())->setText($template[self::TEXT], [], true);
+        $message = (new XmppMessage())->setText($template[self::TEXT], [], true);
 
         return $message;
     }
@@ -129,42 +142,15 @@ class XmppMessageFormatter implements MessageFormatterInterface
      * Parse XML markup and convert to the appropriate Message class.
      *
      * @param SimpleXMLElement $item
-     * @return WebChatMessage
+     * @return OpenDialogMessage
      */
     private function parseMessage(SimpleXMLElement $item)
     {
         switch ($item->getName()) {
-            case self::BUTTON_MESSAGE:
-                $template = $this->formatButtonTemplate($item);
-                return $this->generateButtonMessage($template);
-                break;
-            case self::IMAGE_MESSAGE:
-                $template = $this->formatImageTemplate($item);
-                return $this->generateImageMessage($template);
-                break;
-            case self::LIST_MESSAGE:
-                $template = $this->formatListTemplate($item);
-                return $this->generateListMessage($template);
-                break;
             case self::TEXT_MESSAGE:
                 $text = $this->getMessageText($item);
                 $template = [self::TEXT => $text];
                 return $this->generateTextMessage($template);
-                break;
-            case self::RICH_MESSAGE:
-                $template = $this->formatRichTemplate($item);
-                return $this->generateRichMessage($template);
-                break;
-            case self::FORM_MESSAGE:
-                $template = $this->formatFormTemplate($item);
-                return $this->generateFormMessage($template);
-                break;
-            case self::LONG_TEXT_MESSAGE:
-                $template = $this->formatLongTextTemplate($item);
-                return $this->generateLongTextMessage($template);
-                break;
-            case self::EMPTY_MESSAGE:
-                return new EmptyMessage();
                 break;
             default:
                 $template = [self::TEXT => 'Sorry, I did not understand this message type.'];

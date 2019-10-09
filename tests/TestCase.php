@@ -4,14 +4,20 @@ declare(strict_types=1);
 
 namespace OpenDialogAi\Xmpp\Tests;
 
-class TestCase extends \Orchestra\Testbench\TestCase
-{
-    /**
-     * @var bool Whether DGraph has been initialised or not
-     */
-    private $dgraphInitialised = false;
+use OpenDialogAi\ActionEngine\ActionEngineServiceProvider;
+use OpenDialogAi\ContextEngine\ContextEngineServiceProvider;
+use OpenDialogAi\ConversationBuilder\ConversationBuilderServiceProvider;
+use OpenDialogAi\ConversationEngine\ConversationEngineServiceProvider;
+use OpenDialogAi\ConversationLog\ConversationLogServiceProvider;
+use OpenDialogAi\Core\CoreServiceProvider;
+use OpenDialogAi\InterpreterEngine\InterpreterEngineServiceProvider;
+use OpenDialogAi\ResponseEngine\ResponseEngineServiceProvider;
+use OpenDialogAi\SensorEngine\SensorEngineServiceProvider;
+use OpenDialogAi\Xmpp\XmppServiceProvider;
 
-    protected function setUp(): void
+class TestCase extends \OpenDialogAi\Core\Tests\TestCase
+{
+    protected function setUp() :void
     {
         parent::setUp();
 
@@ -23,43 +29,24 @@ class TestCase extends \Orchestra\Testbench\TestCase
         } catch (\Exception $e) {
             //
         }
-
-        if (!defined('LARAVEL_START')) {
-            define('LARAVEL_START', microtime(true));
-        }
-
-        $this->artisan('migrate', [
-            '--database' => 'testbench'
-        ]);
     }
 
     /**
-     * Sets a config value to the app
-     *
-     * @param $configName
-     * @param $config
+     * Overrides core package providers
      */
-    public function setConfigValue($configName, $config)
-    {
-        $this->app['config']->set($configName, $config);
-    }
-
-    protected function getEnvironmentSetUp($app)
-    {
-        # Setup default database to use sqlite :memory:
-        $app['config']->set('database.default', 'testbench');
-        $app['config']->set('database.connections.testbench', [
-            'driver'   => 'sqlite',
-            'database' => ':memory:',
-            'prefix'   => '',
-        ]);
-    }
-
     public function getPackageProviders($app)
     {
         return [
-            \OpenDialogAi\Xmpp\XmppServiceProvider::class,
-            \OpenDialogAi\Core\CoreServiceProvider::class
+            XmppServiceProvider::class,
+            CoreServiceProvider::class,
+            ActionEngineServiceProvider::class,
+            ConversationBuilderServiceProvider::class,
+            ConversationEngineServiceProvider::class,
+            ConversationLogServiceProvider::class,
+            ResponseEngineServiceProvider::class,
+            ContextEngineServiceProvider::class,
+            InterpreterEngineServiceProvider::class,
+            SensorEngineServiceProvider::class,
         ];
     }
 }
