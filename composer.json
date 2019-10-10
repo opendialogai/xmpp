@@ -9,8 +9,16 @@
     ],
     "authors": [
         {
-          "name": "Steve McDougall",
-          "email": "stevem@greenshootlabs.com"
+          "name": "Stuart Haigh",
+          "email": "stuarth@greenshootlabs.com"
+        },
+        {
+            "name": "Ronald Ashri",
+            "email": "ronalda@greenshootlabs.com"
+        },
+        {
+            "name": "Elliot Massen",
+            "email": "elliotm@greenshootlabs.com"
         }
     ],
     "require": {
