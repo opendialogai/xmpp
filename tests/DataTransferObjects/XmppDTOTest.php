@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace OpenDialogAi\XMPP\Tests\DataTransferObjects;
 
 use OpenDialogAi\Xmpp\DataTransferObjects\XmppDTO;
@@ -9,6 +7,7 @@ use OpenDialogAi\Xmpp\Tests\TestCase;
 
 class XmppDTOTest extends TestCase
 {
+    /** @var XmppDTO */
     protected $dto;
 
     public function setUp(): void
@@ -81,7 +80,6 @@ class XmppDTOTest extends TestCase
         $result = $this->dto->toArray();
 
         $this->assertEquals($value, $result['content']['type']);
-
     }
 
     public function testContentDataCanBeSet()

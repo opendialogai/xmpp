@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace OpenDialogAi\Xmpp\Tests;
 
 use OpenDialogAi\ActionEngine\ActionEngineServiceProvider;
@@ -17,7 +15,7 @@ use OpenDialogAi\Xmpp\XmppServiceProvider;
 
 class TestCase extends \OpenDialogAi\Core\Tests\TestCase
 {
-    protected function setUp() :void
+    protected function setUp() : void
     {
         parent::setUp();
 

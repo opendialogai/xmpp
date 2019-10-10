@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace OpenDialogAi\Xmpp\Tests\ResponseEngine\Message\Xmpp;
 
 use OpenDialogAi\Xmpp\ResponseEngine\Message\Xmpp\XmppMessage;

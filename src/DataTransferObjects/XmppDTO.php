@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace OpenDialogAi\Xmpp\DataTransferObjects;
 
 use OpenDialogAi\Core\Contracts\DataTransferObjectInterface;

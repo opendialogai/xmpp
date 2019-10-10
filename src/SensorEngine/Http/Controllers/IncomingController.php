@@ -1,12 +1,9 @@
 <?php
 
-declare(strict_types=1);
-
 namespace OpenDialogAi\Xmpp\SensorEngine\Http\Controllers;
 
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Log;
-use OpenDialogAi\Core\Controllers\OpenDialogController;
 use OpenDialogAi\SensorEngine\Service\SensorService;
 use OpenDialogAi\Xmpp\ResponseEngine\Jobs\InterpretXmpp;
 use Illuminate\Routing\Controller as BaseController;

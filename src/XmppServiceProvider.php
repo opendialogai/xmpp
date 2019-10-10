@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace OpenDialogAi\Xmpp;
 
 use Illuminate\Support\ServiceProvider;
@@ -15,14 +13,6 @@ class XmppServiceProvider extends ServiceProvider
     {
         $this->publishes([
             __DIR__ . '/../config/opendialog-xmpp.php' => base_path('config/opendialog/xmpp.php')
-        ], 'opendialog-config');
-
-        $this->publishes([
-            __DIR__ . '/../config/opendialog-sensorengine.php' => base_path('config/opendialog/sensor_engine.php')
-        ], 'opendialog-config');
-
-        $this->publishes([
-            __DIR__ . '/../config/opendialog-responseengine.php' => base_path('config/opendialog/response_engine.php')
         ], 'opendialog-config');
 
         $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
