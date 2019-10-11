@@ -9,6 +9,7 @@ use OpenDialogAi\ConversationEngine\ConversationEngineServiceProvider;
 use OpenDialogAi\ConversationLog\ConversationLogServiceProvider;
 use OpenDialogAi\Core\CoreServiceProvider;
 use OpenDialogAi\InterpreterEngine\InterpreterEngineServiceProvider;
+use OpenDialogAi\OperationEngine\OperationEngineServiceProvider;
 use OpenDialogAi\ResponseEngine\ResponseEngineServiceProvider;
 use OpenDialogAi\SensorEngine\SensorEngineServiceProvider;
 use OpenDialogAi\Xmpp\XmppServiceProvider;
@@ -45,6 +46,7 @@ class TestCase extends \OpenDialogAi\Core\Tests\TestCase
             ContextEngineServiceProvider::class,
             InterpreterEngineServiceProvider::class,
             SensorEngineServiceProvider::class,
+            OperationEngineServiceProvider::class
         ];
     }
 }

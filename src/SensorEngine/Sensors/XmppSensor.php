@@ -4,7 +4,6 @@ namespace OpenDialogAi\Xmpp\SensorEngine\Sensors;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
-use OpenDialogAi\Core\Traits\HasName;
 use OpenDialogAi\Core\Utterances\Exceptions\FieldNotSupported;
 use OpenDialogAi\Core\Utterances\Exceptions\UtteranceUnknownMessageType;
 use OpenDialogAi\Core\Utterances\User;
@@ -14,9 +13,7 @@ use OpenDialogAi\Xmpp\Utterances\Xmpp\TextUtterance;
 
 class XmppSensor extends BaseSensor
 {
-    use HasName;
-
-    protected static $name = 'sensor.core.xmpp';
+    public static $name = 'sensor.core.xmpp';
 
     /**
      * Interpret a request.

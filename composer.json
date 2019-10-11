@@ -23,7 +23,7 @@
     ],
     "require": {
         "php": "^7.3.0",
-        "opendialogai/core": "dev-feature/response-engine"
+        "opendialogai/core": "dev-develop"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.6",
@@ -32,7 +32,7 @@
         "opendialogai/dgraph-docker": "^1.1",
         "orchestra/testbench": "^4.0",
         "phpro/grumphp": "^0.16.0",
-        "phpunit/phpunit": "^8.3",
+        "phpunit/phpunit": "8.3.5",
         "squizlabs/php_codesniffer": "^3.4"
     },
     "config": {
