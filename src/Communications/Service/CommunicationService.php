@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace OpenDialogAi\Xmpp\Communications\Service;
 
 use GuzzleHttp\Client;

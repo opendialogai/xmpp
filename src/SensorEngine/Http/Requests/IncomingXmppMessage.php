@@ -1,13 +1,10 @@
 <?php
 
-declare(strict_types=1);
-
 namespace OpenDialogAi\Xmpp\SensorEngine\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use OpenDialogAi\SensorEngine\Contracts\IncomingMessageInterface;
 
-class IncomingXmppMessage extends FormRequest implements IncomingMessageInterface
+class IncomingXmppMessage extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

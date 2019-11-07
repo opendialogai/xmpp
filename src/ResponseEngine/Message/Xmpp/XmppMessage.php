@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace OpenDialogAi\Xmpp\ResponseEngine\Message\Xmpp;
 
 use OpenDialogAi\ResponseEngine\Message\OpenDialogMessage;
@@ -17,8 +15,6 @@ class XmppMessage implements OpenDialogMessage
     /** The message text. */
     private $text = null;
 
-    private $disable_text = false;
-
     private $time;
 
     private $date;
@@ -32,7 +28,7 @@ class XmppMessage implements OpenDialogMessage
     }
 
     /**
-     * Sets text for a standard Web Chat message. The main text is escaped
+     * Sets text for a standard XMPP message. The main text is escaped
      *
      * @param $format - main message text
      * @param array $args - replaced in format
@@ -93,26 +89,6 @@ class XmppMessage implements OpenDialogMessage
     public function setAsEmpty(): void
     {
         $this->isEmpty = true;
-    }
-
-    /**
-     * Set disable_text property
-     *
-     * @param $disable_text
-     * @return $this
-     */
-    public function setDisableText($disable_text)
-    {
-        $this->disable_text = $disable_text;
-        return $this;
-    }
-
-    /**
-     * @return bool
-     */
-    public function getDisableText()
-    {
-        return $this->disable_text;
     }
 
     /**

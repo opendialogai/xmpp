@@ -1,13 +1,16 @@
 <?php
 
-declare(strict_types=1);
-
 namespace OpenDialogAi\Xmpp;
 
 use Illuminate\Support\ServiceProvider;
+use OpenDialogAi\ResponseEngine\Service\ResponseEngineServiceInterface;
+use OpenDialogAi\SensorEngine\SensorEngineServiceProvider;
+use OpenDialogAi\SensorEngine\Service\SensorServiceInterface;
 use OpenDialogAi\Xmpp\Communications\Adapters\CamelAdapter;
 use OpenDialogAi\Xmpp\Communications\CommunicationServiceInterface;
 use OpenDialogAi\Xmpp\Communications\Service\CommunicationService;
+use OpenDialogAi\Xmpp\ResponseEngine\Message\XmppMessageFormatter;
+use OpenDialogAi\Xmpp\SensorEngine\Sensors\XmppSensor;
 
 class XmppServiceProvider extends ServiceProvider
 {
@@ -17,17 +20,13 @@ class XmppServiceProvider extends ServiceProvider
             __DIR__ . '/../config/opendialog-xmpp.php' => base_path('config/opendialog/xmpp.php')
         ], 'opendialog-config');
 
-        $this->publishes([
-            __DIR__ . '/../config/opendialog-sensorengine.php' => base_path('config/opendialog/sensor_engine.php')
-        ], 'opendialog-config');
-
-        $this->publishes([
-            __DIR__ . '/../config/opendialog-responseengine.php' => base_path('config/opendialog/response_engine.php')
-        ], 'opendialog-config');
-
         $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
 
         $this->loadRoutesFrom(__DIR__ . '/../routes/web.php');
+
+        // Add the XMPP sensor and formatter
+        resolve(ResponseEngineServiceInterface::class)->registerFormatter(new XmppMessageFormatter());
+        resolve(SensorServiceInterface::class)->registerSensor(new XmppSensor());
     }
 
     public function register()

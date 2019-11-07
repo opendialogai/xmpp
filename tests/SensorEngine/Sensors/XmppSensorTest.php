@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace OpenDialogAi\Xmpp\Tests\SensorEngine\Sensors;
 
 use Illuminate\Http\Request;

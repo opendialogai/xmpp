@@ -1,16 +1,10 @@
 <?php
 
-declare(strict_types=1);
-
 namespace OpenDialogAi\Xmpp\ResponseEngine\Message;
 
 use Exception;
-use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Support\Facades\Log;
-use OpenDialogAi\ContextEngine\ContextParser;
-use OpenDialogAi\ContextEngine\Facades\ContextService;
-use OpenDialogAi\Core\Traits\HasName;
-use OpenDialogAi\ResponseEngine\Message\MessageFormatterInterface;
+use OpenDialogAi\ResponseEngine\Formatters\BaseMessageFormatter;
 use OpenDialogAi\ResponseEngine\Message\ButtonMessage;
 use OpenDialogAi\ResponseEngine\Message\EmptyMessage;
 use OpenDialogAi\ResponseEngine\Message\FormMessage;
@@ -20,53 +14,27 @@ use OpenDialogAi\ResponseEngine\Message\LongTextMessage;
 use OpenDialogAi\ResponseEngine\Message\OpenDialogMessage;
 use OpenDialogAi\ResponseEngine\Message\OpenDialogMessages;
 use OpenDialogAi\ResponseEngine\Message\RichMessage;
-use OpenDialogAi\ResponseEngine\Service\ResponseEngineService;
-use OpenDialogAi\ResponseEngine\Service\ResponseEngineServiceInterface;
 use OpenDialogAi\Xmpp\ResponseEngine\Message\Xmpp\XmppMessage;
 use OpenDialogAi\Xmpp\ResponseEngine\Message\Xmpp\XmppMessages;
 use SimpleXMLElement;
 
-class XmppMessageFormatter implements MessageFormatterInterface
+class XmppMessageFormatter extends BaseMessageFormatter
 {
-    use HasName;
-
-    /** @var ResponseEngineService */
-    private $responseEngineService;
-
-    protected static $name = 'formatter.core.xmpp';
+    public static $name = 'formatter.core.xmpp';
 
     /** @var array  */
     protected $messages = [];
 
     /**
-     * XmppMessageFormatter constructor.
-     * @throws BindingResolutionException
+     * @inheritDoc
      */
-    public function __construct()
-    {
-        $this->responseEngineService = app()->make(ResponseEngineServiceInterface::class);
-    }
-
     public function getMessages(string $markup): OpenDialogMessages
     {
         $messages = [];
         try {
             $message = new SimpleXMLElement($markup);
-
             foreach ($message->children() as $item) {
-                if ($item->getName() === self::ATTRIBUTE_MESSAGE) {
-                    $attributeText = $this->getAttributeMessageText((string)$item);
-                    return $this->getMessages($attributeText);
-                }
                 $messages[] = $this->parseMessage($item);
-            }
-
-            if (isset($message[self::DISABLE_TEXT])) {
-                if ($message[self::DISABLE_TEXT] == '1' || $message[self::DISABLE_TEXT] == 'true') {
-                    foreach ($messages as $xmppMessage) {
-                        $xmppMessage->setDisableText(true);
-                    }
-                }
             }
         } catch (Exception $e) {
             Log::warning(sprintf('Message Builder error: %s', $e->getMessage()));
@@ -81,61 +49,45 @@ class XmppMessageFormatter implements MessageFormatterInterface
         return $messageWrapper;
     }
 
-    /**
-     * Resolves the attribute by name to get the value for the attribute message, then resolves any attributes
-     * in the resulting text
-     *
-     * @param string $attributeName
-     * @return string
-     */
-    protected function getAttributeMessageText($attributeName): string
-    {
-        [$contextId, $attributeId] = ContextParser::determineContextAndAttributeId($attributeName);
-        $attributeValue = ContextService::getAttributeValue($attributeId, $contextId);
-
-        return $this->responseEngineService->fillAttributes($attributeValue);
-    }
-
     public function generateTextMessage(array $template): OpenDialogMessage
     {
         $message = (new XmppMessage())->setText($template[self::TEXT], [], true);
-
         return $message;
     }
 
     public function generateButtonMessage(array $template): ButtonMessage
     {
-        //
+        return null;
     }
 
     public function generateEmptyMessage(): EmptyMessage
     {
-        //
+        return null;
     }
 
     public function generateFormMessage(array $template): FormMessage
     {
-        //
+        return null;
     }
 
     public function generateImageMessage(array $template): ImageMessage
     {
-        //
+        return null;
     }
 
     public function generateListMessage(array $template): ListMessage
     {
-        //
+        return null;
     }
 
     public function generateLongTextMessage(array $template): LongTextMessage
     {
-        //
+        return null;
     }
 
     public function generateRichMessage(array $template): RichMessage
     {
-        //
+        return null;
     }
 
     /**
@@ -177,27 +129,7 @@ class XmppMessageFormatter implements MessageFormatterInterface
                     }
                 } elseif ($item->nodeType === XML_ELEMENT_NODE) {
                     if ($item->nodeName === self::LINK) {
-                        $openNewTab = ($item->getAttribute('new_tab')) ? true : false;
-
-                        $link = [
-                            self::OPEN_NEW_TAB => $openNewTab,
-                            self::TEXT => '',
-                            self::URL => '',
-                        ];
-
-                        foreach ($item->childNodes as $t) {
-                            $link[$t->nodeName] = trim($t->nodeValue);
-                        }
-
-                        if ($link[self::URL]) {
-                            $text .= ' ' . $this->generateLinkHtml(
-                                $link[self::URL],
-                                $link[self::TEXT],
-                                $link[self::OPEN_NEW_TAB]
-                            );
-                        } else {
-                            Log::debug('Not adding link to message text, url is empty');
-                        }
+                        Log::warning('Not adding link to message text, not supported on OD XMPP messages');
                     }
                 }
             }

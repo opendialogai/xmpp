@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace OpenDialogAi\Xmpp\Tests\SensorEngine\Http\Requests;
 
 use OpenDialogAi\Core\Graph\DGraph\DGraphClient;
