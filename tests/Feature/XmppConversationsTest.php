@@ -13,7 +13,7 @@ class XmppConversationsTest extends TestCase
         parent::setUp();
 
         // this is the NoMatch conversation
-        $this->publishConversation($this->conversation4());
+        $this->activateConversation($this->conversation4());
     }
 
     public function testNoMatchConversation()
