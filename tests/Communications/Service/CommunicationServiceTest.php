@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace OpenDialogAi\Xmpp\Tests\Communications\Service;
 
 use GuzzleHttp\Client;
@@ -17,6 +15,7 @@ class CommunicationServiceTest extends TestCase
 {
     protected $client;
 
+    /** @var CommunicationService */
     protected $service;
 
     public function setUp(): void

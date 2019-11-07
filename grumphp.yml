@@ -17,7 +17,8 @@ parameters:
       whitelist_patterns: []
       encoding: ~
       ignore_patterns:
-          - database/
+          - "*/migrations/*"
+          - "*/tests/*"
       sniffs: []
       triggered_by: [php]
       exclude: []
