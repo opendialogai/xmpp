@@ -18,7 +18,7 @@ class XmppSensor extends BaseSensor
 {
     use HasName;
 
-    protected static $name = 'sensor.core.xmpp';
+    public static $name = 'sensor.core.xmpp';
 
     /**
      * Interpret a request.

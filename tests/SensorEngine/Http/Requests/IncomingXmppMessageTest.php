@@ -15,10 +15,10 @@ class IncomingXmppMessageTest extends TestCase
     {
         parent::setUp();
 
-        $this->publishConversation($this->conversation1());
-        $this->publishConversation($this->conversation2());
-        $this->publishConversation($this->conversation3());
-        $this->publishConversation($this->conversation4());
+        $this->activateConversation($this->conversation1());
+        $this->activateConversation($this->conversation2());
+        $this->activateConversation($this->conversation3());
+        $this->activateConversation($this->conversation4());
 
         $this->dGraph = app()->make(DGraphClient::class);
     }
