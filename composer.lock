@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0fb2d1b06abb619a34d36380f7326535",
+    "content-hash": "cc556c847d0cfdf550fb53c2cf841b73",
     "packages": [
         {
             "name": "anahkiasen/underscore-php",
@@ -1206,21 +1206,20 @@
         },
         {
             "name": "opendialogai/core",
-            "version": "dev-feature/response-engine",
+            "version": "dev-develop",
             "source": {
                 "type": "git",
                 "url": "https://github.com/opendialogai/core.git",
-                "reference": "ad7f95e42ab88b53a8a3f080351396e76bffe4b1"
+                "reference": "ebea8e57fd76d6b92f1bd81eb7fc2c5fe7940daf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/opendialogai/core/zipball/ad7f95e42ab88b53a8a3f080351396e76bffe4b1",
-                "reference": "ad7f95e42ab88b53a8a3f080351396e76bffe4b1",
+                "url": "https://api.github.com/repos/opendialogai/core/zipball/ebea8e57fd76d6b92f1bd81eb7fc2c5fe7940daf",
+                "reference": "ebea8e57fd76d6b92f1bd81eb7fc2c5fe7940daf",
                 "shasum": ""
             },
             "require": {
                 "doctrine/dbal": "^2.9",
-                "ext-simplexml": "*",
                 "guzzlehttp/guzzle": "~6.3",
                 "justinrainbow/json-schema": "^5.2",
                 "opendialogai/dgraph-docker": "1.1.0",
@@ -1237,7 +1236,7 @@
                 "mockery/mockery": "^1.2",
                 "orchestra/testbench": "^4.0",
                 "phpro/grumphp": "^0.16.0",
-                "phpunit/phpunit": "^8.3",
+                "phpunit/phpunit": "8.3.5",
                 "squizlabs/php_codesniffer": "^3.4"
             },
             "type": "library",
@@ -1250,6 +1249,7 @@
                         "OpenDialogAi\\ConversationLog\\ConversationLogServiceProvider",
                         "OpenDialogAi\\ResponseEngine\\ResponseEngineServiceProvider",
                         "OpenDialogAi\\InterpreterEngine\\InterpreterEngineServiceProvider",
+                        "OpenDialogAi\\OperationEngine\\OperationEngineServiceProvider",
                         "OpenDialogAi\\ContextEngine\\ContextEngineServiceProvider",
                         "OpenDialogAi\\ActionEngine\\ActionEngineServiceProvider",
                         "OpenDialogAi\\SensorEngine\\SensorEngineServiceProvider"
@@ -1269,6 +1269,7 @@
                     "OpenDialogAi\\ConversationLog\\": "src/ConversationLog",
                     "OpenDialogAi\\ResponseEngine\\": "src/ResponseEngine",
                     "OpenDialogAi\\InterpreterEngine\\": "src/InterpreterEngine",
+                    "OpenDialogAi\\OperationEngine\\": "src/OperationEngine",
                     "OpenDialogAi\\SensorEngine\\": "src/SensorEngine",
                     "OpenDialogAi\\Core\\Database\\": "database/",
                     "OpenDialogAi\\Core\\Tests\\": "tests/"
@@ -1289,7 +1290,7 @@
                 }
             ],
             "description": "The OpenDialog core package",
-            "time": "2019-10-01T09:37:35+00:00"
+            "time": "2019-11-05T14:57:25+00:00"
         },
         {
             "name": "opendialogai/dgraph-docker",

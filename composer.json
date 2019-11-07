@@ -15,7 +15,7 @@
     ],
     "require": {
         "php": "^7.3.0",
-        "opendialogai/core": "dev-feature/response-engine"
+        "opendialogai/core": "dev-develop"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.6",
