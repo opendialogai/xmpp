@@ -23,7 +23,7 @@
     ],
     "require": {
         "php": "^7.3.0",
-        "opendialogai/core": "dev-develop"
+        "opendialogai/core": "dev-feature/virtual-intents"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.6",
