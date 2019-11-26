@@ -1235,12 +1235,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/opendialogai/core.git",
-                "reference": "68af6f7d6385798e8c90d9f7e89c6ee8a8582210"
+                "reference": "f176db82c48315cf7637df491e256fd2986e0f5d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/opendialogai/core/zipball/68af6f7d6385798e8c90d9f7e89c6ee8a8582210",
-                "reference": "68af6f7d6385798e8c90d9f7e89c6ee8a8582210",
+                "url": "https://api.github.com/repos/opendialogai/core/zipball/f176db82c48315cf7637df491e256fd2986e0f5d",
+                "reference": "f176db82c48315cf7637df491e256fd2986e0f5d",
                 "shasum": ""
             },
             "require": {
@@ -1316,7 +1316,7 @@
                 }
             ],
             "description": "The OpenDialog core package",
-            "time": "2019-11-22T11:25:17+00:00"
+            "time": "2019-11-26T15:36:18+00:00"
         },
         {
             "name": "opendialogai/dgraph-docker",
