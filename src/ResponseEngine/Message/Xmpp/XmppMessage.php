@@ -114,4 +114,14 @@ class XmppMessage implements OpenDialogMessage
             'data' => $this->getData()
         ];
     }
+
+    public function setHidetime()
+    {
+        return;
+    }
+
+    public function setInternal()
+    {
+        return;
+    }
 }
