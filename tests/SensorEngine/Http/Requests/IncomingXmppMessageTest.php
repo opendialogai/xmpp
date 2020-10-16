@@ -38,6 +38,9 @@ class IncomingXmppMessageTest extends TestCase
         ];
     }
 
+    /**
+     * @requires DGRAPH
+     */
     public function testNotificationTypeValidation()
     {
         $data = $this->getData();
@@ -56,6 +59,9 @@ class IncomingXmppMessageTest extends TestCase
                 ]]]);
     }
 
+    /**
+     * @requires DGRAPH
+     */
     public function testFromAddressValidation()
     {
         $data = $this->getData();
@@ -75,6 +81,9 @@ class IncomingXmppMessageTest extends TestCase
                 ]]]);
     }
 
+    /**
+     * @requires DGRAPH
+     */
     public function testToAddressValidation()
     {
         $data = $this->getData();
@@ -93,6 +102,9 @@ class IncomingXmppMessageTest extends TestCase
                 ]]]);
     }
 
+    /**
+     * @requires DGRAPH
+     */
     public function testLanguageIsSupportedValidation()
     {
         $data = $this->getData();
@@ -111,6 +123,9 @@ class IncomingXmppMessageTest extends TestCase
                 ]]]);
     }
 
+    /**
+     * @requires DGRAPH
+     */
     public function testContentIsRequiredInValidation()
     {
         $data = $this->getData();
@@ -129,6 +144,9 @@ class IncomingXmppMessageTest extends TestCase
                 ]]]);
     }
 
+    /**
+     * @requires DGRAPH
+     */
     public function testContentTypeValidates()
     {
         $data = $this->getData();
@@ -148,6 +166,9 @@ class IncomingXmppMessageTest extends TestCase
         ;
     }
 
+    /**
+     * @requires DGRAPH
+     */
     public function testContentAuthorValidates()
     {
         $data = $this->getData();
@@ -168,6 +189,9 @@ class IncomingXmppMessageTest extends TestCase
             ]]);
     }
 
+    /**
+     * @requires DGRAPH
+     */
     public function testContentDataValidation()
     {
         $data = $this->getData();
@@ -187,6 +211,9 @@ class IncomingXmppMessageTest extends TestCase
             ]]);
     }
 
+    /**
+     * @requires DGRAPH
+     */
     public function testContentDataTextValidation()
     {
         $data = $this->getData();
@@ -206,6 +233,9 @@ class IncomingXmppMessageTest extends TestCase
             ]]);
     }
 
+    /**
+     * @requires DGRAPH
+     */
     public function testRequestCanPassValidation()
     {
         $data = $this->getData();

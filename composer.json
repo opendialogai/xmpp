@@ -29,7 +29,7 @@
         "barryvdh/laravel-ide-helper": "^2.6",
         "friendsofphp/php-cs-fixer": "^2.15",
         "matthewbdaly/artisan-standalone": "^0.0.8",
-        "opendialogai/dgraph-docker": "^1.1",
+        "opendialogai/dgraph-docker": "1.2.5",
         "orchestra/testbench": "^4.0",
         "phpro/grumphp": "^0.16.0",
         "phpunit/phpunit": "8.3.5",
