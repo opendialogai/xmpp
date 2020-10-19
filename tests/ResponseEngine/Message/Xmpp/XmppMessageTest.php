@@ -8,6 +8,9 @@ use OpenDialogAi\Xmpp\ResponseEngine\Message\XmppMessageFormatter;
 
 class XmppMessageTest extends TestCase
 {
+    /**
+     * @requires DGRAPH
+     */
     public function testTextMessage()
     {
         $markup = '<message><text-message>hi there</text-message></message>';

@@ -51,6 +51,9 @@ class InterpretXmppTest extends TestCase
         ];
     }
 
+    /**
+     * @requires DGRAPH
+     */
     public function testJobIsDispatched()
     {
         Bus::fake();
@@ -68,6 +71,9 @@ class InterpretXmppTest extends TestCase
         Bus::assertDispatched(InterpretXmpp::class);
     }
 
+    /**
+     * @requires DGRAPH
+     */
     public function testUtteranceIsCorrectType()
     {
         Queue::fake();
@@ -86,6 +92,9 @@ class InterpretXmppTest extends TestCase
         });
     }
 
+    /**
+     * @requires DGRAPH
+     */
     public function testSending()
     {
         $adapterMock = $this->spy(CamelAdapter::class, function (MockInterface $mock) {

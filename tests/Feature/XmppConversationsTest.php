@@ -16,6 +16,9 @@ class XmppConversationsTest extends TestCase
         $this->activateConversation($this->conversation4());
     }
 
+    /**
+     * @requires DGRAPH
+     */
     public function testNoMatchConversation()
     {
         // This utterance will not match a conversation, so should trigger the no match message
