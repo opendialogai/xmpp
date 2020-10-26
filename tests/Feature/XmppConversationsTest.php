@@ -28,5 +28,7 @@ class XmppConversationsTest extends TestCase
 
         // Here we can check that we got the right message out
         $this->assertNotNull($messages);
+        $this->assertCount(1, $messages->getMessageToPost());
+        $this->assertEquals('No messages found for intent intent.core.NoMatchResponse', $messages->getMessageToPost()[0]['data']['text']);
     }
 }
