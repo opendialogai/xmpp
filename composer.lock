@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9c28532a2dc9de8c316af4663e484f21",
+    "content-hash": "c5de8f7183de067d129e4adf516ba16f",
     "packages": [
         {
             "name": "doctrine/cache",
@@ -1270,16 +1270,16 @@
         },
         {
             "name": "opendialogai/core",
-            "version": "dev-fix/set-message-intent",
+            "version": "0.7.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/opendialogai/core.git",
-                "reference": "3e5ac562471be390ddf525860b624bc19db886a2"
+                "reference": "baa03c2af8ec466ea3635315d610cb40b38d4876"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/opendialogai/core/zipball/3e5ac562471be390ddf525860b624bc19db886a2",
-                "reference": "3e5ac562471be390ddf525860b624bc19db886a2",
+                "url": "https://api.github.com/repos/opendialogai/core/zipball/baa03c2af8ec466ea3635315d610cb40b38d4876",
+                "reference": "baa03c2af8ec466ea3635315d610cb40b38d4876",
                 "shasum": ""
             },
             "require": {
@@ -1348,7 +1348,7 @@
                 "Apache-2.0"
             ],
             "description": "The OpenDialog Core package",
-            "time": "2020-10-23T16:21:47+00:00"
+            "time": "2020-10-26T18:35:57+00:00"
         },
         {
             "name": "opendialogai/dgraph-docker",
@@ -5767,6 +5767,7 @@
             "keywords": [
                 "tokenizer"
             ],
+            "abandoned": true,
             "time": "2019-09-17T06:23:10+00:00"
         },
         {

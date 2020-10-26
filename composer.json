@@ -23,7 +23,7 @@
     ],
     "require": {
         "php": "^7.3.0",
-        "opendialogai/core": "dev-fix/set-message-intent"
+        "opendialogai/core": "0.7.x-dev"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.6",
