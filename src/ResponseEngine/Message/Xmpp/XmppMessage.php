@@ -21,6 +21,8 @@ class XmppMessage implements OpenDialogMessage
 
     private $isEmpty = false;
 
+    private $intent;
+
     public function __construct()
     {
         $this->time = date('h:i A');
@@ -123,5 +125,14 @@ class XmppMessage implements OpenDialogMessage
     public function setInternal()
     {
         return;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function setIntent(string $intent): OpenDialogMessage
+    {
+        $this->intent = $intent;
+        return $this;
     }
 }
