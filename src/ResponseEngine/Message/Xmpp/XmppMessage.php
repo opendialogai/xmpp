@@ -131,4 +131,9 @@ class XmppMessage implements OpenDialogMessage
     {
         return;
     }
+
+    public function setIntent(string $intent): OpenDialogMessage
+    {
+        // TODO: Implement setIntent() method.
+    }
 }
