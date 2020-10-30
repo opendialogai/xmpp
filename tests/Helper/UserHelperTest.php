@@ -7,7 +7,7 @@ use OpenDialogAi\Xmpp\Tests\TestCase;
 
 class UserHelperTest extends TestCase
 {
-    const SEPARATOR = '_';
+    const SEPARATOR = '::';
 
     public function testCreateNewUserId()
     {
@@ -20,7 +20,7 @@ class UserHelperTest extends TestCase
 
     public function testGetUserId()
     {
-        $testUserId = 'agent2_political';
+        $testUserId = 'agent2'.self::SEPARATOR.'political';
         $testUserIdArray = explode(self::SEPARATOR, $testUserId);
         $testUserNoRoom = 'agent2';
 

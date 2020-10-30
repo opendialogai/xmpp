@@ -4,7 +4,7 @@ namespace OpenDialogAi\Xmpp\Helper;
 
 final class UserHelper
 {
-    private const SEPARATOR = "_";
+    private const SEPARATOR = "::";
 
     /**
      * @param string $id

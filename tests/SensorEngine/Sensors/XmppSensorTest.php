@@ -77,11 +77,12 @@ class XmppSensorTest extends XmppSensorTestBase
         $data = [
             'text' => 'A message'
         ];
+        $separator = '::';
 
         $body = $this->generateResponseMessage('text', $data);
         $utterance = $this->sensor->interpret(new Request($body));
         $userId = $utterance->getUser()->getId();
 
-        $this->assertEquals($userId, $body['from'].'_'.$body['room']);
+        $this->assertEquals($userId, $body['from'].$separator.$body['room']);
     }
 }
