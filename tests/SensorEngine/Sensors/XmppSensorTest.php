@@ -69,7 +69,19 @@ class XmppSensorTest extends XmppSensorTestBase
         $body = $this->generateResponseMessage('text', $data);
         $utterance = $this->sensor->interpret(new Request($body));
         $user = $utterance->getUser();
-        $this->assertEquals($user->getEmail(), $body['from']);
         $this->assertEquals($user->getExternalId(), $body['from']);
+    }
+
+    public function testSensorReturnsAnUtteranceWithCorrectUserId()
+    {
+        $data = [
+            'text' => 'A message'
+        ];
+
+        $body = $this->generateResponseMessage('text', $data);
+        $utterance = $this->sensor->interpret(new Request($body));
+        $userId = $utterance->getUser()->getId();
+
+        $this->assertEquals($userId, $body['from'].'_'.$body['room']);
     }
 }

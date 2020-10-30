@@ -18,6 +18,7 @@ class XmppMessageTest extends TestCase
 
         /** @var XmppMessage[] $messages */
         $messages = $formatter->getMessages($markup)->getMessages();
+
         $this->assertEquals('hi there', $messages[0]->getText());
         $markup = <<<EOT
 <message>
