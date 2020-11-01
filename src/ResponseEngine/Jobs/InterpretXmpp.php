@@ -46,9 +46,10 @@ class InterpretXmpp implements ShouldQueue
         /** @var XmppMessages $messageWrapper */
         $messageWrapper = $odController->runConversation($this->utterance);
 
-        Log::debug(sprintf('Sending response: %s', json_encode($messageWrapper->getMessageToPost())));
+        $messageToPost = $messageWrapper->getMessageToPost();
+        Log::debug(sprintf('Sending response: %s', json_encode($messageToPost)));
 
-        $communicationService->getAdapter()->setPayload($messageWrapper->getMessageToPost());
+        $communicationService->getAdapter()->setPayload($messageToPost);
         $response = $communicationService->communicate();
 
         if (!is_null($response)) {

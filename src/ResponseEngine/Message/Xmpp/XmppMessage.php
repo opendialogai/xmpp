@@ -3,6 +3,8 @@
 namespace OpenDialogAi\Xmpp\ResponseEngine\Message\Xmpp;
 
 use OpenDialogAi\ResponseEngine\Message\OpenDialogMessage;
+use OpenDialogAi\ContextEngine\Facades\ContextService;
+use OpenDialogAi\Xmpp\Helper\UserHelper;
 
 class XmppMessage implements OpenDialogMessage
 {
@@ -43,6 +45,7 @@ class XmppMessage implements OpenDialogMessage
             // Escape &, <, > characters
             $this->text = vsprintf(htmlspecialchars($format, ENT_NOQUOTES), $args);
         }
+
         return $this;
     }
 
@@ -108,8 +111,12 @@ class XmppMessage implements OpenDialogMessage
         if ($this->isEmpty) {
             return false;
         }
+        $userId = UserHelper::getUserId(ContextService::getUserContext()->getUserId());
+
         return [
             'author' => config('opendialog.xmpp.bot_address'),
+            'recipient' => $userId['id'],
+            'room' => array_key_exists('room', $userId) ? $userId['room'] : null,
             'type' => $this->getMessageType(),
             'data' => $this->getData()
         ];
@@ -123,5 +130,10 @@ class XmppMessage implements OpenDialogMessage
     public function setInternal()
     {
         return;
+    }
+
+    public function setIntent(string $intent): OpenDialogMessage
+    {
+        // TODO: Implement setIntent() method.
     }
 }

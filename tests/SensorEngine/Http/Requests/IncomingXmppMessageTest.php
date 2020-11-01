@@ -27,6 +27,7 @@ class IncomingXmppMessageTest extends TestCase
             'notification' => 'message',
             'from' => 'user@example.com',
             'to' => 'user2@example.com',
+            'room' => 'tanks',
             'lang' => 'en',
             'content' => [
                 'type' => 'text',

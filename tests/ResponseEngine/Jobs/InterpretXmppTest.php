@@ -40,6 +40,7 @@ class InterpretXmppTest extends TestCase
             'notification' => 'message',
             'from' => $author = 'user1@example.com',
             'to' => 'user2@xmpp-server.opendialog.ai',
+            'room=' => 'tanks',
             'lang' => 'en',
             'content' => [
                 'type' => 'text',

@@ -39,6 +39,9 @@ class IncomingXmppMessage extends FormRequest
                 'string',
                 'email:rfc,filter'
             ],
+            'room' => [
+                'string'
+            ],
             'lang' => [
                 'required',
                 'string',
