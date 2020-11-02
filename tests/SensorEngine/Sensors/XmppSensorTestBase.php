@@ -18,6 +18,7 @@ class XmppSensorTestBase extends TestCase
             'notification' => 'message',
             'from' => $from = 'user@email.com',
             'to' => 'person@email.com',
+            'room' => 'tanks',
             'lang' => 'en',
             'content' => [
                 'type' => $type,
