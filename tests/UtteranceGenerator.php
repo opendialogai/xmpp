@@ -37,10 +37,8 @@ class UtteranceGenerator
     public static function generateUser(): User
     {
         $generator = Factory::create();
-
         $jid = $generator->email;
         $room = 'tanks';
-
         $userId = UserHelper::createUserId($jid, $room);
 
         return new User($userId);

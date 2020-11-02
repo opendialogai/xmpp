@@ -4,7 +4,7 @@ namespace OpenDialogAi\Xmpp\Helper;
 
 final class UserHelper
 {
-    public const SEPARATOR = "?room=";
+    public const SEPARATOR = "_room_";
     public const ID_USER = 'id';
     public const ROOM = 'room';
 
