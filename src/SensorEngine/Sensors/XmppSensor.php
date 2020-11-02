@@ -32,7 +32,9 @@ class XmppSensor extends BaseSensor
         switch ($content['type']) {
             case 'text':
                 Log::debug('Received XMPP message.');
-                $userId = UserHelper::createUserId($request['from'], $request['room']);
+                $userId = isset($request->room) ?
+                    UserHelper::createUserId($request->from, $request->room) :
+                    UserHelper::createUserId($request->from);
                 $utterance = new TextUtterance();
                 $utterance->setData($content['data']);
                 $utterance->setText($content['data']['text']);

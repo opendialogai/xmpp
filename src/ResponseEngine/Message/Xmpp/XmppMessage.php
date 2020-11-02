@@ -115,8 +115,8 @@ class XmppMessage implements OpenDialogMessage
 
         return [
             'author' => config('opendialog.xmpp.bot_address'),
-            'recipient' => $userId['id'],
-            'room' => array_key_exists('room', $userId) ? $userId['room'] : null,
+            'recipient' => $userId[UserHelper::ID_USER],
+            'room' => array_key_exists('room', $userId) ? $userId[UserHelper::ROOM] : null,
             'type' => $this->getMessageType(),
             'data' => $this->getData()
         ];
@@ -134,6 +134,8 @@ class XmppMessage implements OpenDialogMessage
 
     public function setIntent(string $intent): OpenDialogMessage
     {
-        // TODO: Implement setIntent() method.
+        $this->intent = $intent;
+
+        return $this;
     }
 }

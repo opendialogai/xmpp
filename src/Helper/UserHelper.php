@@ -4,7 +4,9 @@ namespace OpenDialogAi\Xmpp\Helper;
 
 final class UserHelper
 {
-    private const SEPARATOR = "?room=";
+    public const SEPARATOR = "?room=";
+    public const ID_USER = 'id';
+    public const ROOM = 'room';
 
     /**
      * @param string $id
@@ -28,8 +30,8 @@ final class UserHelper
         $id = explode(self::SEPARATOR, $id);
 
         return [
-            'id' => $id[0],
-            'room' => $id[1]
+            self::ID_USER => $id[0],
+            self::ROOM => $id[1]
         ];
     }
 }

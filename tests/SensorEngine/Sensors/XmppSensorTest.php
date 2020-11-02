@@ -4,6 +4,7 @@ namespace OpenDialogAi\Xmpp\Tests\SensorEngine\Sensors;
 
 use Illuminate\Http\Request;
 use OpenDialogAi\Core\Utterances\Exceptions\UtteranceUnknownMessageType;
+use OpenDialogAi\Xmpp\Helper\UserHelper;
 use OpenDialogAi\Xmpp\SensorEngine\Sensors\XmppSensor;
 use OpenDialogAi\Xmpp\Utterances\Xmpp\TextUtterance;
 
@@ -77,12 +78,12 @@ class XmppSensorTest extends XmppSensorTestBase
         $data = [
             'text' => 'A message'
         ];
-        $separator = '?room=';
 
         $body = $this->generateResponseMessage('text', $data);
         $utterance = $this->sensor->interpret(new Request($body));
         $userId = $utterance->getUser()->getId();
 
-        $this->assertEquals($userId, $body['from'].$separator.$body['room']);
+        $this->assertEquals($utterance->getUser()->getId(), $utterance->getUserId());
+        $this->assertEquals($userId, $body['from'].UserHelper::SEPARATOR.$body['room']);
     }
 }
