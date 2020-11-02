@@ -5,6 +5,7 @@ namespace OpenDialogAi\Xmpp\Tests;
 use Faker\Factory;
 use OpenDialogAi\Core\Utterances\Exceptions\FieldNotSupported;
 use OpenDialogAi\Core\Utterances\User;
+use OpenDialogAi\Xmpp\Helper\UserHelper;
 use OpenDialogAi\Xmpp\Utterances\Xmpp\TextUtterance;
 
 /**
@@ -38,9 +39,10 @@ class UtteranceGenerator
         $generator = Factory::create();
 
         $jid = $generator->email;
+        $room = 'tanks';
 
-        $user = new User($jid);
-        $user->setEmail($jid);
-        return $user;
+        $userId = UserHelper::createUserId($jid, $room);
+
+        return new User($userId);
     }
 }
