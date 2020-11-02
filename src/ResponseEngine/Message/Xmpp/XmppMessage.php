@@ -23,6 +23,8 @@ class XmppMessage implements OpenDialogMessage
 
     private $isEmpty = false;
 
+    private $intent;
+
     public function __construct()
     {
         $this->time = date('h:i A');
