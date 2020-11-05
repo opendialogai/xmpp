@@ -9,6 +9,7 @@ use OpenDialogAi\Core\Utterances\Exceptions\UtteranceUnknownMessageType;
 use OpenDialogAi\Core\Utterances\User;
 use OpenDialogAi\Core\Utterances\UtteranceInterface;
 use OpenDialogAi\SensorEngine\BaseSensor;
+use OpenDialogAi\Xmpp\Helper\UserHelper;
 use OpenDialogAi\Xmpp\Utterances\Xmpp\TextUtterance;
 
 class XmppSensor extends BaseSensor
@@ -31,10 +32,13 @@ class XmppSensor extends BaseSensor
         switch ($content['type']) {
             case 'text':
                 Log::debug('Received XMPP message.');
+                $userId = isset($request->room) ?
+                    UserHelper::createUserId($request->from, $request->room) :
+                    UserHelper::createUserId($request->from);
                 $utterance = new TextUtterance();
                 $utterance->setData($content['data']);
                 $utterance->setText($content['data']['text']);
-                $utterance->setUserId($userId = $request['from']);
+                $utterance->setUserId($userId);
 
                 $utterance->setUser(
                     $this->createUser(
@@ -61,8 +65,6 @@ class XmppSensor extends BaseSensor
     private function createUser(string $userId, array $userData): User
     {
         $user = new User($userId);
-
-        isset($userData['from']) ? $user->setEmail($userData['from']) : null;
         isset($userData['from']) ? $user->setExternalId($userData['from']) : null;
 
         return $user;
